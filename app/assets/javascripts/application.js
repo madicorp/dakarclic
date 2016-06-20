@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require mustache
+//= require meanmenu
 //= require_tree .
 
 $(window).load(function() {
