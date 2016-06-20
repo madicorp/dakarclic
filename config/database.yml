@@ -6,9 +6,9 @@
 #
 development:
   adapter: postgresql
-  database: auction
-  username: postgres
-  password: postgres
+  database: dakarclick
+  username: admin2nqm6nt
+  password: jt_nKJ28I9Ik
   pool: 5
   timeout: 5000
 
@@ -18,15 +18,15 @@ development:
 test:
   adapter: postgresql
   database: auction
-  username: postgres
+  username: admin2nqm6nt
   password: postgres
   pool: 5
   timeout: 5000
 
 production:
   adapter: postgresql
-  database: auction
-  username: postgres
-  password: postgres
+  database: dakarclick
+  username: admin2nqm6nt
+  password: jt_nKJ28I9Ik
   pool: 5
   timeout: 5000
