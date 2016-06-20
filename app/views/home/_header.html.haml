@@ -1,0 +1,39 @@
+.b_header_middle
+  .container
+    .row
+      .top_left.col-md-6.col-sm-6.col-xs-12.pull-left
+        .language_currency
+          %form.language{:action => "#", :method => "post"}
+            .btn-group
+              %button.btn-link.dropdown-toggle{"data-toggle" => "dropdown"}
+                %strong
+                  = image_tag "icon/gb.png" , title: "English" , alt:"English"
+                  %b Langue
+                %i.fa.fa-angle-down
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"}
+                    = image_tag "icon/de.png" , title: "Deutsch" , alt:"Deutsch"
+                    %span Deutsch
+                %li
+                  %a{:href => "#"}
+                    = image_tag "icon/gb.png" , title: "English" , alt:"English"
+                    %span English
+      .top_right.col-md-6.col-sm-6.col-xs-12.pull-right
+        .footer-social
+          %ul
+            %li.facebook
+              %a{"data-original-title" => "Facebook", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#"}
+                %i.fa.fa-facebook
+            %li.twitter
+              %a{"data-original-title" => "Twitter", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#"}
+                %i.fa.fa-twitter
+            %li.googleplus
+              %a{"data-original-title" => "Googleplus", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#"}
+                %i.fa.fa-google-plus
+            %li.youtube
+              %a{"data-original-title" => "Youtube", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#"}
+                %i.fa.fa-youtube-play
+            %li.instagram
+              %a{"data-original-title" => "Instagram", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#"}
+                %i.fa.fa-instagram

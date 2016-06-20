@@ -1,0 +1,12 @@
+%h2= @product.name
+
+%p
+  = image_tag @product.image, height: 200
+
+%p
+  = link_to 'Edit', edit_product_path(@product)
+  |
+  = link_to 'Back', products_path
+
+=render "auction"
+=render "bid" if @product.has_auction?
