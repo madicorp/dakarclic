@@ -6,9 +6,9 @@
 #
 development:
   adapter: postgresql
-  database: dakarclickdb
+  database: auction
   username: postgres
-  password: root
+  password: postgres
   pool: 5
   timeout: 5000
 
