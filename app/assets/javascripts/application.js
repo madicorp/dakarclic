@@ -17,6 +17,10 @@
 //= require turbolinks
 //= require mustache
 //= require meanmenu
+//= require wow.min.js
+//= require owl.carousel.min.js
+//= require jquery.countdown.min.js
+//= require jquery.fancybox.pack.js
 //= require_tree .
 
 $(window).load(function() {
