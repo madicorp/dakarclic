@@ -75,3 +75,51 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+
+.mt60{
+  margin-top: 60px;
+}
+
+.desblockprice{
+  margin-top: 15px
+}
+
+.desprice{
+  color : #f32200;
+  font-size:30px !important;
+  -vendor-animation-duration: 2s;
+  -vendor-animation-delay: 2s;
+  -vendor-animation-iteration-count: infinite;
+}
+
+.desprice_inverse{
+  font-size:30px !important;
+  background-color: #cc1d00;
+  color: #fff;
+}
+
+
+.customenc{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nopad{
+  padding: 0px !important;
+}
+
+.white{
+  color:#fff !important;
+}
+
+.infogagn {
+  font-size :16px;
+  font-weight :700
+}
+
+.infogagn_inverse{
+  background-color: #ccc;
+  color :#fff;
+  font-size :16px;
+}
