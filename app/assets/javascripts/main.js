@@ -1,9 +1,7 @@
 /**
  * Created by a621275 on 07/06/2016.
  */
-(function($) {
-    "use strict";
-
+$(document).on('ready', function(event) {
     /*----------------------------
      jQuery MeanMenu
      ------------------------------ */
@@ -32,9 +30,9 @@
     $('[data-countdown]').each(function() {
         var $this = $(this),
             finalDate = $(this).data('countdown');
-        // $this.countdown(finalDate, function(event) {
-        //     $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D</span></span><span class="cdown hour"><span class="time-count">%-H</span></span><span class="cdown minutes"><span class="time-count">%M</span></span> <span class="cdown second"><span class="time-count">%S</span></span>'));
-        // });
+        $this.countdown(finalDate, function(event) {
+            $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D<span>J</span></span></span><span class="cdown hour"><span class="time-count">%-H<span>H</span></span></span><span class="cdown minutes"><span class="time-count">%M<span>M</span></span></span> <span class="cdown second"><span class="time-count">%S<span>S</span></span></span>'));
+        });
     });
 
     /*----------------------------

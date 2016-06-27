@@ -13,4 +13,13 @@ class Auction < ActiveRecord::Base
   def ended?
       auction_close < Time.now
   end
+
+  def topbid_user
+      if(top_bid.nil?)
+          '...'
+      else
+          user = User.find_by_id top_bid.user_id
+          user.name
+      end
+  end
 end

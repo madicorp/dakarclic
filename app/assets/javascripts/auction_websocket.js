@@ -22,13 +22,10 @@ AuctionSocket.prototype.initBinds = function() {
 
     switch(tokens[0]) {
       case 'bidok':
-        _this.bid(tokens[1], tokens[2], tokens[3]);
-        break;
-      case 'underbid':
-        _this.underbid(tokens[1]);
+        _this.bid(tokens[1], tokens[2], tokens[3], tokens[4]);
         break;
       case 'outbid':
-        _this.outbid(tokens[1]);
+        _this.outbid(tokens[1],tokens[2]);
         break;
       case 'won':
         _this.won();
@@ -49,24 +46,63 @@ AuctionSocket.prototype.sendBid = function() {
   }));
 };
 
-AuctionSocket.prototype.bid = function(value,units) {
-     $('.messunits strong').html(
-    'Il vous reste: ' +units+ ' unités');
+AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close) {
 
-    this.form.find('.message strong').html(
-        'Your bid: ' + value
+    $('.messunits').html(units+ 'Unités');
+
+    $('.nbench').html(nbEnch+ ' Enchères');
+
+
+    $('.infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
+
+
+    $('.desprice').html(
+        value + 'FCFA'
     );
+    $('.infogagn').addClass('infogagn_inverse').removeClass('infogagn');
+
+    $('.infogagn_inverse').animateinfogagn('wobble');
+
+    $('.desprice').addClass('desprice_inverse').removeClass('desprice');
+
+    $('.desprice_inverse').animateCss('pulse');
 
 };
 
-AuctionSocket.prototype.underbid = function(value) {
-  this.form.find('.message strong').html(
-    'Your bid is under ' + value + '.'
-  );
+AuctionSocket.prototype.outbid = function(value, nbEnch) {
+    $('.nbench').html(nbEnch+ ' Enchères');
+
+    $('.infogagn').html('Ooopss. Vous êtes hors enchère en ce moment.')
+
+
+    $('.desprice').html(
+      value + 'FCFA'
+    );
+    $('.infogagn').addClass('infogagn_inverse').removeClass('infogagn');
+
+    $('.infogagn_inverse').animateinfogagn('wobble');
+
+    $('.desprice').addClass('desprice_inverse').removeClass('desprice');
+
+    $('.desprice_inverse').animateCss('pulse');
+
 };
 
-AuctionSocket.prototype.outbid = function(value) {
-  this.form.find('.message strong').html(
-    'You were outbid. It is now ' + value + '.'
-  );
-};
+
+$.fn.extend({
+    animateinfogagn: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+            $(this).addClass('infogagn').removeClass('infogagn_inverse');
+        });
+    },
+
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+            $(this).addClass('desprice').removeClass('desprice_inverse');
+        });
+    }
+});

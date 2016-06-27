@@ -43,11 +43,11 @@
     .row
       .col-md-3.col-lg-3.col-sm-3.col-xs-12
         .logo
-          %a{:href => "homepage.html"}
+          %a{:href => root_path}
             =image_tag  "logo.png"
       .col-md-2.col-lg-2.col-sm-2.col-xs-12
-      .col-md-4.col-lg-4.col-sm-4.col-xs-12
       .col-md-3.col-lg-3.col-sm-3.col-xs-12
+      .col-md-4.col-lg-4.col-sm-4.col-xs-12
         .shop-wish-item
           .top-links
             %ul.list-inline
@@ -57,11 +57,17 @@
                   %span Souhaits (0)
               -if current_user
                 %li
+                  %a.wishlist-total{:href => "wishlist.html", :title => "Wish List (0)"}
+                    %i.pe-7s-like
+                    %span.messunits #{current_user.units}Unités
+                %li
                   %a.dropdown-toggle.my_account{"data-toggle" => "dropdown", :href => "#", :title => "My Account"}
                     %i.pe-7s-user
                     %span= current_user.name
                     %i.fa.fa-angle-down
                   %ul.dropdown-menu.dropdown-menu-right
+                    %li
+                      =link_to "Profil" , destroy_user_session_path, method: :delete
                     %li
                       =link_to "Déconnexion" , destroy_user_session_path, method: :delete
               -else

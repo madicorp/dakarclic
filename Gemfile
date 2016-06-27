@@ -38,6 +38,7 @@ gem 'wow-rails'
 gem 'elevatezoom-rails'
 gem "font-awesome-rails"
 gem 'modernizr-rails'
+gem 'carrierwave'
 gem 'google-webfonts-rails', '~> 0.0.4'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
