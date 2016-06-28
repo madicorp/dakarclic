@@ -123,3 +123,36 @@
   color :#fff;
   font-size :16px;
 }
+
+ul.list-inline > li {
+  float: right;
+}
+.search-bar{
+  width: 100%;
+}
+
+.modal.account-area{
+  padding-top: 20%;
+}
+
+.top-links .list-inline li a i{
+  top : 0;
+  font-size: 18px;
+}
+.top-links .button.c_button{
+  padding: 0px 18px;
+}
+@media (max-width: 767px){
+  ul.list-inline {
+    padding-left: 50px;
+  }
+  ul.list-inline > li {
+    margin-right: 50px;
+    float: none;
+}
+  .shop-wish-item{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+}

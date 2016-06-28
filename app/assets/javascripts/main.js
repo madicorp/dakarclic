@@ -1,11 +1,13 @@
 /**
  * Created by a621275 on 07/06/2016.
  */
-$(document).on('ready', function(event) {
+$(document).ready(function () {
     /*----------------------------
      jQuery MeanMenu
      ------------------------------ */
     jQuery('nav#dropdown').meanmenu();
+});
+$(document).on('page:change', function(event) {
 
     //    toggle class
     $(".buy-btn span").on("click", function() {
@@ -190,4 +192,4 @@ $(document).on('ready', function(event) {
     });
 
 
-})(jQuery);
+});

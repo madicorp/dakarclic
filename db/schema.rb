@@ -45,12 +45,8 @@ ActiveRecord::Schema.define(version: 20160625165050) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "fichier_file_name"
-    t.string   "fichier_content_type"
-    t.integer  "fichier_file_size"
-    t.datetime "fichier_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
