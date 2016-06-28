@@ -43,4 +43,6 @@ Rails.application.configure do
 
   config.timeout_in = 10.minutes
 
+  config.log_level = :debug
+
 end

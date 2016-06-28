@@ -25,7 +25,7 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should show product" do
-    get :show, id: @product
+    get :w, id: @product
     assert_response :success
   end
 

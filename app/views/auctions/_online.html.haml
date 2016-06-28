@@ -8,7 +8,7 @@
           .btn.seemore
             =link_to "Plus" , "#"
     .row.row-padd
-      - @products.each do |product|
+      - @productsOnline.each do |product|
         .col-md-3.col-sm-3.col-padd-custom
           .single-product
             .av_title= product.name
@@ -17,15 +17,12 @@
                 =image_tag product.image
               .time-ratting-bought-custom
                 .time-counter
-                  .countdown{"data-countdown" => "2016/06/10"}
+                  .countdown{"data-countdown" => product.auction.auction_close}
             .single-product-text
               .price-type
                 .old-price
-                  %span moise95
+                  %span= product.auction.topbid_user
                 .running-price
-                  %span.price-custom 25000FCFA
+                  %span.price-custom{"data-productid" => product.id} #{product.auction.value} FCFA
               .cart-btn
-                -unless current_user
-                  =link_to "GO", "#productModal", "data-toggle" => "modal", class: "btngo"
-                -else
-                  %a{:href => "#", class: "btngo"} GO
+                =link_to "GO", product , class: "btngo"

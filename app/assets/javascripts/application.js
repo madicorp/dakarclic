@@ -10,19 +10,20 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery.nivo.slider
+//= require jquery.min
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require mustache
 //= require meanmenu
-//= require wow.min.js
-//= require owl.carousel.min.js
-//= require jquery.countdown.min.js
-//= require jquery.fancybox.pack.js
-//= require_tree .
-
+//= require jquery.nivo.slider
+//= require wow.min
+//= require owl.carousel.min
+//= require jquery.countdown.min
+//= require jquery.fancybox.pack
+//= require jquery.elevateZoom-3.0.8.min
+//= require main
+//= require auction_websocket
 $(window).load(function() {
 
     //---------------------------------------------

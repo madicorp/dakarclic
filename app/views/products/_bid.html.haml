@@ -1,28 +1,26 @@
 -if @product.auction.ended?
   =render "auctions/status"
 -else
-  %p.messunits
-    %strong
-      Il vous reste #{current_user.total_units} unités
-
   =form_for [@product, @product.auction, Bid.new] do |f|
-    %p.message
-      %strong
-        -if @product.auction.top_bid.present?
-          -if @product.auction.top_bid.user_id == current_user.id
-            Current bid:
-          -else
-            You were outbid:
-        -else
-          Current bid:
-
-        =@product.auction.current_bid
-    %div
-      Ends at:
-      %p.countdown{"data-until" => "#{@product.auction.ends_at.strftime("%Y/%m/%d %H:%M:%S")}"}
+    -#%p
+    -#  %strong
+    -#    -if @product.auction.top_bid.present?
+    -#      -if @product.auction.top_bid.user_id == current_user.id
+    -#        Current bid:
+    -#      -else
+    -#        You were outbid:
+    -#    -else
+    -#      Current bid:
+    -#
+    -#    =@product.auction.current_bid
     %p
-      =f.button class: "btn btn-primary"
-
+      .cart-btn.nopad
+        =f.button "Enchérir", class: "btn btn-primary customenc"
+        -#-else
+        -#  %a.white{:href => "#", :title => "Enchérir"}
+        -#    Enchérir
+        %a.wishl{:href => "#", :title => "Ajouter aux souhaits"}
+          %i.fa.fa-heart
 
 :javascript
 
@@ -31,15 +29,15 @@
    App = {
      websocket_url: "ws://#{request.host}:#{request.port}/"
   };
+    var user_id = "#{current_user.id}";
+    var auction_id = "#{@product.auction.id}";
+    var form = $("#new_bid");
+
+    var auctionSocket = new AuctionSocket(
+      user_id,
+      auction_id,
+      form
+    );
 
 
-     var user_id = "#{current_user.id}";
-     var auction_id = "#{@product.auction.id}";
-     var form = $("#new_bid");
-
-     var auctionSocket = new AuctionSocket(
-       user_id,
-       auction_id,
-       form
-     );
   });

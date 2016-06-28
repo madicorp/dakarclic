@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619010907) do
+ActiveRecord::Schema.define(version: 20160625165050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160619010907) do
     t.text     "description"
     t.string   "status"
     t.datetime "auction_close"
+    t.integer  "valuetoinc"
+    t.integer  "timetoinc"
   end
 
   add_index "auctions", ["product_id"], name: "index_auctions_on_product_id", using: :btree
@@ -43,8 +45,12 @@ ActiveRecord::Schema.define(version: 20160619010907) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "fichier_file_name"
+    t.string   "fichier_content_type"
+    t.integer  "fichier_file_size"
+    t.datetime "fichier_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160619010907) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.boolean  "admin"
+    t.integer  "units"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
