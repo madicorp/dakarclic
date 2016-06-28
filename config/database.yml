@@ -6,7 +6,7 @@
 #
 development:
   adapter: postgresql
-  database: auction
+  database: dakarclickdb
   username: postgres
   password: postgres
   pool: 5
