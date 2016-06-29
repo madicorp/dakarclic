@@ -1,11 +1,148 @@
+/*Customize color */
+a{
+  color: #fff;
+}
 
+.home-4-waraper .main-header {
+  background: #eeeeee none repeat scroll 0 0;
+}
+
+.home-4-waraper a:hover {
+  color: #ffcc00;
+}
+.home-4-waraper .menu-area ul li > a{
+  border: 3px solid rgba(255,255,255,0);
+  //border-bottom: none;
+}
+.home-4-waraper .menu-area ul li a:hover, .home-4-waraper .menu-area ul li:hover > a {
+  background: #fff;
+ // border: none;
+  border-bottom: 3px solid #ffcc00;
+  color: #ffcc00;
+}
+.home-4-waraper .language .dropdown-menu li a:hover,
+.home-4-waraper .language .dropdown-menu li button:hover,
+.home-4-waraper .currency .dropdown-menu li a:hover,
+.home-4-waraper .currency .dropdown-menu li button:hover {
+  color: #ffcc00;
+}
+.cart-btn.common4 > a {
+  background: #ffcc00 none repeat scroll 0 0;
+}
+.cart-btn.common4 > a:hover {
+  border: 1px solid #ffcc00;
+}
+
+.slider-area2 .bend .rm-btn a,
+.slider-area2 .rm-btn2 a {
+  background-color: #ffcc00;
+  border: 1px solid #ffcc00;
+  color: #fff;
+
+}
+.slider-area2 .bend .rm-btn a:hover,
+.slider-area2 .rm-btn2 a:hover {
+  color: #ffcc00;
+}
+.preview-2 .nivo-controlNav a:hover,
+.preview-2 .nivo-controlNav a.active {
+  background: #ffcc00 none repeat scroll 0 0;
+}
+.common4 .input-box a i {
+  background: #0066ff none repeat scroll 0 0;
+}
+.common4 .input-box a i:hover{
+  background: #fff none repeat scroll 0 0;
+  color: #0066ff;
+}
+.home-4-waraper .bt-information .b_static_footer {
+  background: #ffcc00 none repeat scroll 0 0;
+}
+
+.home-4-waraper .search-bar > input, .input-box input{
+  border: 1px solid #0066ff;
+}
+.home-4-waraper .search-bar > input[placeholder]{
+  color: #000;
+}
+.home-4-waraper .search-bar {
+  color: #0066ff;
+}
+.home-4-waraper .menu-area{
+  background-color: #c3c3c3;
+}
+.menu-area ul li > a{
+  color: #fff;
+}
+footer {
+  background-color: #868686;
+}
+.b_header_middle {
+  background-color: #c3c3c3;
+}
+.language strong b, .currency strong b,
+.b_header_middle .contact,
+.b_header_middle .contact a,
+.b_header_middle .top_right
+.footer-social ul li a,.btn-link:hover, .btn-link:focus{
+  color: #fff;
+}
+.language strong b:hover,
+.currency strong b:hover,
+.b_header_middle .contact:hover,
+.b_header_middle .contact a:hover,
+.b_header_middle .top_right .footer-social ul li a:hover{
+  color: #ffcc00;
+}
+.button.c_button,.button.c_button.reverse:hover {
+  background: #0066ff none repeat scroll 0 0;
+  color: #fff;
+  border: 1px solid #0066ff;
+}
+.button.c_button:hover,.button.c_button.reverse {
+  background: #fff none repeat scroll 0 0;
+  color: #0066ff;
+  border-color: #0066ff;
+}
+.time-ratting-bought-custom {
+  background: rgba(0, 102, 255, 0.5) none repeat scroll 0 0;
+}
+.single-product-text {
+  background-color: rgba(238, 238, 238, 0.68);
+  border-top: 1px solid #c3c3c3;
+  box-shadow: 0 1px 5px 0  rgba(205, 205, 205, 0.86);
+}
+.common-btn .btn.btn-primary{
+  background: #fff none repeat scroll 0 0;
+  color: #0066ff;
+  border: 1px solid #0066ff;
+}
+.common-btn .btn.btn-primary:hover{
+  background: #0066ff none repeat scroll 0 0;
+  color: #fff;
+}
+.list-inline > li > a{
+  color: #868686;
+}
+.list-inline > li > a:hover{
+  color: #ffcc00;
+}
+.frm-action{
+  background: rgba(0, 102, 255, 0.5) none repeat scroll 0 0;
+  border-color: rgba(0, 102, 255, 0.5);
+}
+/*Customize color */
 .av_title {
-    background-color: #e9e9e9;
+    background: rgba(0, 102, 255, 0.5) none repeat scroll 0 0;;
     font-weight: bold;
-    height: 25px;
+    height: 50px;
     overflow: hidden;
     text-align: center;
     width: 100%;
+    padding-top: 15px;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
 
@@ -26,7 +163,6 @@
 }
 
 .time-ratting-bought-custom {
-  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
   bottom: 0;
   color: #fff;
   height: 30px;
@@ -132,7 +268,7 @@ ul.list-inline > li {
 }
 
 .modal.account-area{
-  padding-top: 20%;
+  padding-top: 70px;
 }
 
 .top-links .list-inline li a i{
@@ -140,7 +276,7 @@ ul.list-inline > li {
   font-size: 18px;
 }
 .top-links .button.c_button{
-  padding: 0px 18px;
+  padding: 0px 7px;
 }
 @media (max-width: 767px){
   ul.list-inline {
