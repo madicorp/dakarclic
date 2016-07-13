@@ -2,13 +2,51 @@
 a{
   color: #fff;
 }
-
+.b_static_footer, .b_static_footer h3 {
+  color:rgba(48, 48, 47, 0.86) !important;
+}
 .home-4-waraper .main-header {
-  background: #eeeeee none repeat scroll 0 0;
+  background: #f4f4f2 none repeat scroll 0 0;
+}
+.single-prodcut-des .infogagn, .single-prodcut-des h3{
+  color: #1253a4;
+}
+.single-prodcut-des li{
+  color: #30302f;
+}
+footer a {
+  font-size: 16px;
+  color: #f4f4f2;
+}
+.powered-payment{
+  background-color: #30302f;
 }
 
-.home-4-waraper a:hover {
-  color: #ffcc00;
+.menu-area ul li > a {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.forgotten a:hover{
+  color:#ffd464 !important;
+}
+.desprice{
+  color: #1253a4 !important;
+}
+
+.home-4-waraper a:hover{
+  color: #1253a4;
+}
+
+.cart-btn > a:hover, .cart-btn2 a{
+  background: #ffd464 none repeat scroll 0 0 !important;
+  border: 1px solid #ffd464;
+  color: #fff;
+}
+
+.cart-btn > a:hover, .cart-btn2 a:hover{
+  background: #ffd464 none repeat scroll 0 0;
+  border: 1px solid #ffd464;
+  color: #fff;
 }
 .home-4-waraper .menu-area ul li > a{
   border: 3px solid rgba(255,255,255,0);
@@ -16,60 +54,60 @@ a{
 }
 .home-4-waraper .menu-area ul li a:hover, .home-4-waraper .menu-area ul li:hover > a {
   background: #fff;
- // border: none;
-  border-bottom: 3px solid #ffcc00;
-  color: #ffcc00;
+  border-bottom: 3px solid #ffd464;
+  color: #30302f;
 }
 .home-4-waraper .language .dropdown-menu li a:hover,
 .home-4-waraper .language .dropdown-menu li button:hover,
 .home-4-waraper .currency .dropdown-menu li a:hover,
 .home-4-waraper .currency .dropdown-menu li button:hover {
-  color: #ffcc00;
+  color: #ffd464;
 }
-.cart-btn.common4 > a {
-  background: #ffcc00 none repeat scroll 0 0;
+.cart-btn.common4 > a, .btngo, .cart-btn.nopad a {
+  background: #ffd464 none repeat scroll 0 0 !important;
 }
-.cart-btn.common4 > a:hover {
-  border: 1px solid #ffcc00;
+.cart-btn.common4 > a:hover,.btngo:hover {
+  background: #ffd464 none repeat scroll 0 0;
+  border: 1px solid #ffd464;
+  color: #fff;
 }
 
 .slider-area2 .bend .rm-btn a,
 .slider-area2 .rm-btn2 a {
-  background-color: #ffcc00;
-  border: 1px solid #ffcc00;
+  background-color: #ffd464;
+  border: 1px solid #ffd464;
   color: #fff;
 
 }
 .slider-area2 .bend .rm-btn a:hover,
 .slider-area2 .rm-btn2 a:hover {
-  color: #ffcc00;
+  color: #ffd464;
 }
 .preview-2 .nivo-controlNav a:hover,
 .preview-2 .nivo-controlNav a.active {
-  background: #ffcc00 none repeat scroll 0 0;
+  background: #ffd464 none repeat scroll 0 0;
 }
 .common4 .input-box a i {
-  background: #0066ff none repeat scroll 0 0;
+  background: #1253a4 none repeat scroll 0 0;
 }
 .common4 .input-box a i:hover{
-  background: #fff none repeat scroll 0 0;
-  color: #0066ff;
+  background: #1253a4 none repeat scroll 0 0;
 }
 .home-4-waraper .bt-information .b_static_footer {
-  background: #ffcc00 none repeat scroll 0 0;
+  background: #ffd464 none repeat scroll 0 0;
 }
 
 .home-4-waraper .search-bar > input, .input-box input{
-  border: 1px solid #0066ff;
+  border: 1px solid #1253a4;
 }
 .home-4-waraper .search-bar > input[placeholder]{
   color: #000;
 }
 .home-4-waraper .search-bar {
-  color: #0066ff;
+  color: #1253a4;
 }
 .home-4-waraper .menu-area{
-  background-color: #c3c3c3;
+  background-color:rgba(48, 48, 47, 0.5);
 }
 .menu-area ul li > a{
   color: #fff;
@@ -78,7 +116,7 @@ footer {
   background-color: #868686;
 }
 .b_header_middle {
-  background-color: #c3c3c3;
+  background-color:rgba(48, 48, 47, 0.5);
 }
 .language strong b, .currency strong b,
 .b_header_middle .contact,
@@ -92,44 +130,52 @@ footer {
 .b_header_middle .contact:hover,
 .b_header_middle .contact a:hover,
 .b_header_middle .top_right .footer-social ul li a:hover{
-  color: #ffcc00;
+  color: #ffd464;
 }
-.button.c_button,.button.c_button.reverse:hover {
-  background: #0066ff none repeat scroll 0 0;
-  color: #fff;
-  border: 1px solid #0066ff;
+.btn-login,.btn-register,.wishlist-total,.my_account{
+  line-height: 63px;
 }
-.button.c_button:hover,.button.c_button.reverse {
-  background: #fff none repeat scroll 0 0;
-  color: #0066ff;
-  border-color: #0066ff;
+.wishlist-total,.my_account{
+  color: #30302f;
 }
+.btn-register{
+  color: #1253a4 ;
+}
+
+.btn-login,.seemore {
+  color: #ffd464!important;
+}
+
+.old-price span{
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .time-ratting-bought-custom {
   background: rgba(0, 102, 255, 0.5) none repeat scroll 0 0;
 }
 .single-product-text {
-  background-color: rgba(238, 238, 238, 0.68);
-  border-top: 1px solid #c3c3c3;
+  background-color: rgba(195, 195, 195, 0.55);
+  border-top: 1px solid rgba(48, 48, 47, 0.5);
   box-shadow: 0 1px 5px 0  rgba(205, 205, 205, 0.86);
 }
 .common-btn .btn.btn-primary{
   background: #fff none repeat scroll 0 0;
-  color: #0066ff;
-  border: 1px solid #0066ff;
+  color: #1253a4;
+  border: 1px solid #1253a4;
 }
 .common-btn .btn.btn-primary:hover{
-  background: #0066ff none repeat scroll 0 0;
+  background: #1253a4 none repeat scroll 0 0;
   color: #fff;
 }
-.list-inline > li > a{
-  color: #868686;
-}
-.list-inline > li > a:hover{
-  color: #ffcc00;
-}
+
 .frm-action{
   background: rgba(0, 102, 255, 0.5) none repeat scroll 0 0;
   border-color: rgba(0, 102, 255, 0.5);
+}
+div.frm-action span{
+  color: #fff;
 }
 /*Customize color */
 .av_title {
@@ -143,11 +189,6 @@ footer {
     color: #fff;
     font-size: 20px;
     text-transform: uppercase;
-}
-
-
-.seemore{
-  background-color: #F7C600 !important;
 }
 
 .seemore a {
@@ -177,15 +218,10 @@ footer {
 }
 
 .price-custom{
-  color :#ff1744 !important;
+  color :#1253a4  !important;
   font-weight: 700 !important;
   font-size: 16px !important;
 }
-
-.btngo{
-  background: #00aeef  none repeat scroll 0 0 !important;
-}
-
 
 .border-form-div {
   max-width: 300px;

@@ -53,33 +53,32 @@
                 %input{:placeholder => "search hear...", :type => "text"}/
                 %i.fa.fa-search
       .col-md-3.col-lg-3.col-sm-3.col-xs-12
-        .shop-wish-item
-          .top-links
-            %ul.list-inline
-              -if current_user
-                %li
-                  %a.wishlist-total{:href => "wishlist.html", :title => "Wish List (0)"}
-                    %i.pe-7s-like
-                    %span.messunits #{current_user.units} Unités
-                %li
-                  %a.dropdown-toggle.my_account{"data-toggle" => "dropdown", :href => "#", :title => "My Account"}
-                    %i.fa.fa-user
-                    %span= current_user.name
-                    %i.fa.fa-angle-down
-                  %ul.dropdown-menu.dropdown-menu-right
-                    %li
-                      =link_to "Profil" , destroy_user_session_path, method: :delete
-                    %li
-                      =link_to "Déconnexion" , destroy_user_session_path, method: :delete
-              -else
-                %li
-                  %a{"data-toggle" => "modal", :href => "#login-modal", :title => "Connexion", :class=>"button c_button reverse dis-left"}
+        .top-links
+          %ul.list-inline
+            -if current_user
+              %li
+                %a.wishlist-total{:href => "wishlist.html", :title => "Wish List (0)"}
+                  %i.pe-7s-like
+                  %span.messunits #{current_user.units} Unités
+              %li
+                %a.dropdown-toggle.my_account{"data-toggle" => "dropdown", :href => "#", :title => "My Account"}
+                  %i.fa.fa-user
+                  %span= current_user.name
+                  %i.fa.fa-angle-down
+                %ul.dropdown-menu.dropdown-menu-right
+                  %li
+                    =link_to "Profil" , destroy_user_session_path, method: :delete
+                  %li
+                    =link_to "Déconnexion" , destroy_user_session_path, method: :delete
+            -else
+              %li
+                %a{"data-toggle" => "modal", :href => "#login-modal", :title => "Connexion", :class=>"btn btn-login dis-left"}
 
-                    %span
-                      %i.fa.fa-user
-                      Connexion
-                %li
-                  %a{"data-toggle" => "modal", :href => "#signup-modal", :title => "Inscription", :class=>"button c_button dis-left"}
-                    %span
-                      %i.fa.fa-user
-                      Inscription
+                  %span
+                    %i.fa.fa-user
+                    Connexion
+              %li
+                %a{"data-toggle" => "modal", :href => "#signup-modal", :title => "Inscription", :class=>"btn btn-register dis-left"}
+                  %span
+                    %i.fa.fa-user
+                    Inscription
