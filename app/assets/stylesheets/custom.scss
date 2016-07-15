@@ -109,11 +109,33 @@ footer a {
 .home-4-waraper .menu-area{
   background-color:rgba(48, 48, 47, 0.5);
 }
+.home-4-waraper .mobile-menu-area{
+  background-color:rgba(48, 48, 47, 0.5);
+  border-bottom: 2px solid #ffd464;
+}
+.home-4-waraper .mean-container .mean-nav ul li a:hover{
+  color: #ffd464;
+}
 .menu-area ul li > a{
   color: #fff;
+  font-size: 11px;
+  line-height: 10px;
+  padding: 20px 20px;
+}
+
+.dropdown-menu-right {
+  right: auto;
 }
 footer {
   background-color: #868686;
+}
+
+#scrollUp{
+  background: #ffd464 none repeat scroll 0 0;
+}
+#scrollUp:hover{
+  border-color: #ffd464;
+  color: #ffd464;
 }
 .b_header_middle {
   background-color:rgba(48, 48, 47, 0.5);
@@ -176,6 +198,10 @@ footer {
 }
 div.frm-action span{
   color: #fff;
+}
+
+.modal-backdrop.fade.in ~ .modal-backdrop.fade.in {
+  background: none;
 }
 /*Customize color */
 .av_title {
@@ -256,20 +282,26 @@ div.frm-action span{
 .desblockprice{
   margin-top: 15px
 }
-
-.desprice{
-  color : #f32200;
-  font-size:30px !important;
-  -vendor-animation-duration: 2s;
-  -vendor-animation-delay: 2s;
-  -vendor-animation-iteration-count: infinite;
+.artical-title a{
+  color: #30302f;
+}
+.sp-bubble{
+  background: #1253a4 none repeat scroll 0 0;
+}
+.sp-bubble cite span{
+  border: 15px solid #ffd464;
 }
 
-.desprice_inverse{
-  font-size:30px !important;
-  background-color: #cc1d00;
-  color: #fff;
+.single-slider h4 span{
+  background: #1253a4;
+
 }
+
+.slide-btn .owl-buttons div i:hover{
+  background: #ffd464 none repeat scroll 0 0;
+  border-color: #ffd464;
+}
+
 
 
 .customenc{

@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+
+  get 'talking'=> 'talking#index'
+
+  get 'submission' => 'submission#index'
+
+  get 'how_it_works' => 'how_it_works#index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :products do

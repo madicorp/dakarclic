@@ -18,6 +18,7 @@
     <div class="row">
       <div class="col-sm-9 col-xs-12 col-sm-offset-2">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
           <div class="login-reg">
             <h3>Login</h3>
             <div class="form-group">
