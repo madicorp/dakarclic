@@ -5,14 +5,26 @@
         %nav#dropdown
           %ul
             %li
-              =link_to 'En Cours' , root_path
+              %a{:href => root_path}
+                Accueil
             %li
-              %a{:href => "#"} A venir
+              -if request.original_url  == root_url
+                %a{:href => "#online"} En Cours
+              -else
+                %a{:href => root_url << "#online"} En Cours
             %li
-              %a{:href => "#"} Terminées
+              -if request.original_url  == root_url
+                %a{:href => "#coming"} A venir
+              -else
+                %a{:href => root_url << '#coming'} A venir
             %li
-              %a{:href => "#"} Comment ça marche
+              -if request.original_url  == root_url
+                %a{:href => "#closed"} Terminées
+              -else
+                %a{:href => root_url << '#closed'} Terminées
             %li
-              %a{:href => "#"} Proposez vos produits
+              %a{:href => "/how_it_works"} Comment ça marche
             %li
-              %a{:href => "#"} Le parlement
+              %a{:href => "/submission"} Proposez vos produits
+            %li
+              %a{:href => "/talking"} Le parlement
