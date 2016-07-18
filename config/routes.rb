@@ -12,10 +12,8 @@ Rails.application.routes.draw do
 
   resources :products do
   end
-
   resources :orders do
   end
-
   resources :auctions do
       resources :bids , only: [ :create] do
       end

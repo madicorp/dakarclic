@@ -49,7 +49,7 @@
                 %tr
                   %td.model Prix à l'unité
                   %td
-                    %span.price= @order.status
+                    %span.price 100 FCFA
                   %td.align-right
                     .cart-quantity
                       .product-quantity
@@ -78,7 +78,13 @@
                       %b Total:
                     %td.right.total.last
                       = @order.total_ttc
-                      =f.text_field :total_ttc , class: "hidden"
+                      =f.hidden_field :total_ttc
+                      =f.hidden_field :total_ht
+
                       %em F CFA
           .buttons.common-btn
-            =f.button "Commander" ,"data-loading-text" => "Loading...", class: "btn btn-primary"
+            -if current_user
+              =f.button "Commander" ,"data-loading-text" => "Loading...", class: "btn btn-primary"
+            -else
+              %a{:href => "#login-modal", :title => "Commander" , "data-toggle" => "modal" , class: "btn btn-primary" , type: "button" }
+                Commander

@@ -31,7 +31,10 @@ class OrdersController < ApplicationController
   def create
      # @order = Order.new(order_params)
     invoice = Paydunya::Checkout::Invoice.new
-    invoice.total_amount = 15000
+    @order = Order.new(order_params)
+    invoice.add_item("Unités DakarClick", @order.quantity, @order.total_ht, @order.total_ttc)
+    invoice.add_tax("TVA (18%)", @order.total_ht)
+    invoice.total_amount = @order.total_ttc
     if invoice.create
         puts invoice.status
         puts invoice.response_text
@@ -87,6 +90,6 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       # params.fetch(:order, {})
-        params.require(:order).permit(:quantity, :total_ttc)
+        params.require(:order).permit(:quantity, :total_ttc ,:total_ht)
     end
 end
