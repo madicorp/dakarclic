@@ -11,8 +11,6 @@ class CreateOrders < ActiveRecord::Migration
       t.timestamp :updated_at
       t.string :status
       t.string :payment_method
-      t.user :belongs_to
-
       t.timestamps null: false
     end
   end
