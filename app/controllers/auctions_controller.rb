@@ -11,6 +11,12 @@ class AuctionsController < ApplicationController
        end
     end
 
+    # GET /auctions/1
+    # GET /auctions/1.json
+    def show
+      @auction = Auction.find(params[:id])
+    end
+
     private
     def auction_params
         params.require(:auction).permit(:value , :auction_close)

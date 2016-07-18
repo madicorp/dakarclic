@@ -11,9 +11,8 @@
 // about supported directives.
 //
 //= require jquery.min
-//= require jquery_ujs
+//= require jquery.turbolinks.min
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require mustache
 //= require meanmenu
 //= require jquery.nivo.slider
@@ -24,10 +23,9 @@
 //= require jquery.elevateZoom-3.0.8.min
 //= require main
 //= require auction_websocket
+//= require turbolinks
 
-$( document ).ready(function() {
-
-    $(document).on('page:change',function (event) {
+    $(document).on('ready page:change',function (event) {
         (function ($) {
             "use strict";
 
@@ -76,9 +74,9 @@ $( document ).ready(function() {
                 manualAdvance: false
             });
 
-            //scroll to animation
 
-            $("a[href^='#'][data-toggle!='modal']").click(function (e) {
+            //scroll to animation
+            $("a[href^='#'][data-toggle!='modal'][data-toggle!='collapse']").click(function (e) {
                 e.preventDefault();
                 var margin = 50;
                 if ($(document).scrollTop() <= 180)
@@ -86,7 +84,7 @@ $( document ).ready(function() {
                     margin += 50;
                 }
                 var element = $(this).attr("href");
-                $("html, body").delay(300).animate({scrollTop: $(element).offset().top - margin }, 2000);
+                $("html, body").animate({scrollTop: $(element).offset().top - margin }, 2000);
                 return false;
             });
 
@@ -106,10 +104,6 @@ $( document ).ready(function() {
         })(jQuery);
     });
 
-    //Spinner
-    // hide spinner
-    $(".bg_load").hide();
-
 
     // show spinner on AJAX start
     $(document).ajaxStart(function(){
@@ -121,15 +115,14 @@ $( document ).ready(function() {
         $(".bg_load").hide();
     });
 
-    $(document).on("page:fetch", function(){
+    $(document).on("ready page:update", function(){
         $(".bg_load").show();
     });
 
-    $(document).on("page:receive", function(){
+    $(document).on("ready page:receive", function(){
         $(".bg_load").hide();
     });
 
-});
 
 
 

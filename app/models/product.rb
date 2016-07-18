@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-    has_one :auction
+    has_many :auction
 
     def has_auction?
         auction.present?

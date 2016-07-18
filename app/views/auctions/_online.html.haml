@@ -8,21 +8,21 @@
           .btn.seemore
             =link_to "Plus" , "#"
     .row.row-padd
-      - @productsOnline.each do |product|
+      - @auctionOnline.each do |auction|
         .col-md-3.col-sm-3.col-padd-custom
           .single-product
-            .av_title= product.name
+            .av_title= auction.product.name
             .product-img
               %a{:href => "#", class: "btngo"}
-                =image_tag product.image
+                =image_tag auction.product.image
               .time-ratting-bought-custom
                 .time-counter
-                  .countdown{"data-countdown" => product.auction.auction_close}
+                  .countdown{"data-countdown" => auction.auction_close}
             .single-product-text
               .price-type
                 .old-price
-                  %span= product.auction.topbid_user
+                  %span= auction.topbid_user
                 .running-price
-                  %span.price-custom{"data-productid" => product.id} #{product.auction.value} FCFA
+                  %span.price-custom{"data-productid" => auction.product.id} #{auction.value} FCFA
               .cart-btn
-                =link_to "GO", product , class: "btngo"
+                =link_to "GO", auction , class: "btngo"

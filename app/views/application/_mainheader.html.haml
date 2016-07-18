@@ -60,6 +60,8 @@
                 %a.wishlist-total{:href => "#", :title => "Wish List (0)"}
                   %i.pe-7s-like
                   %span.messunits #{current_user.units} Unités
+                  %a.btn.btn-default{"data-toggle" => "modal", :href => "#credit-modal"}
+                    %span.fa.fa-plus
               %li
                 %a.dropdown-toggle.my_account{"data-toggle" => "dropdown", :href => "#", :title => "My Account"}
                   %i.fa.fa-lock
@@ -67,7 +69,7 @@
                   %i.fa.fa-angle-down
                 %ul.dropdown-menu.dropdown-menu-right
                   %li
-                    =link_to "Profil" , destroy_user_session_path, method: :delete
+                    =link_to "Profil" , edit_user_registration_path
                   %li
                     =link_to "Déconnexion" , destroy_user_session_path, method: :delete
             -else

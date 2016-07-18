@@ -111,7 +111,7 @@ ul {
     clear: both
 }
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
     background-color: #F7F7F7
 }
@@ -120,7 +120,7 @@ body {
     background-color: #fff
 }
 .popins-font {
-    font-family: "Poppins", sans-serif
+    font-family: "Roboto", sans-serif
 }
 .mb30 {
     margin-bottom: 30px
@@ -287,7 +287,7 @@ body {
     border-left: 1px solid #f5f5f5;
 }
 .currency .dropdown-menu li button {
-    font-family: "Lato", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 13px;
     margin-bottom: 0;
     width: 100%;
@@ -1103,7 +1103,7 @@ footer .footer_column_content .bt-information.column {
     padding: 8px 15px;
 }
 .product-name2 a {
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 500;
 }
@@ -1112,7 +1112,7 @@ footer .footer_column_content .bt-information.column {
     font-size: 25px;
     line-height: 27px;
     font-weight: 600;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 .single-product-text2 {
     background: #fff none repeat scroll 0 0;
@@ -1161,15 +1161,15 @@ footer .footer_column_content .bt-information.column {
     padding-right: 5px;
 }
 .home-2-waraper .title h1 {
-    font-family: poppins;
+    font-family: Roboto;
     font-weight: 600;
 }
 .home-2-waraper .product-name > a {
-    font-family: poppins;
+    font-family: Roboto;
     font-weight: 500;
 }
 .home-2-waraper .dis-percentage span {
-    font-family: poppins;
+    font-family: Roboto;
     font-size: 35px;
     font-weight: 600;
 }
@@ -1178,7 +1178,7 @@ footer .footer_column_content .bt-information.column {
     font-weight: 600;
 }
 .home-2-waraper .price-type span {
-    font-family: poppins;
+    font-family: Roboto;
 }
 .home-2-waraper .product-img img {
     border-radius: 4px 4px 0 0;
@@ -1646,7 +1646,7 @@ footer .sign-up-nletter h3 {
 }
 .home-4-waraper .dis-percentage span,
 .home-4-waraper .price-type {
-    font-family: lato;
+    font-family: Roboto;
 }
 .just-for-today .single-product {
     margin-bottom: 20px;
@@ -1766,7 +1766,7 @@ footer .sign-up-nletter h3 {
     border-radius: 4px;
     color: #fff;
     display: inline-block;
-    font-family: "Lato", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
@@ -2023,7 +2023,7 @@ footer .sign-up-nletter h3 {
     border-radius: 4px;
     color: #fff;
     float: right;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 20px;

@@ -7,7 +7,7 @@ $(document).ready(function () {
      ------------------------------ */
     jQuery('nav#dropdown').meanmenu();
 });
-$(document).on('page:change', function(event) {
+$(document).on('ready page:change', function(event) {
 
     //    toggle class
     $(".buy-btn span").on("click", function() {
@@ -142,6 +142,19 @@ $(document).on('page:change', function(event) {
     /*----------------------------
      cart-plus-minus-button
      ------------------------------ */
+    $(".cart-plus-minus-box").bind("paste keyup",function () {
+        var newVal = $(this).val();
+
+        if( Number(newVal)!==parseInt(newVal)){
+            newVal = 1;
+            $(this).val(newVal);
+        }
+        var s_total = newVal * 100;
+        var tva = s_total * 18/100;
+        $(".cart-total").find(".s_total").html( s_total+ " <em>F CFA</em>");
+        $(".cart-total").find(".tva").html(tva + " <em>F CFA</em>");
+        $(".cart-total").find(".total").html((s_total + tva) + " <em>F CFA</em>");
+    });
     $(".cart-plus-minus")
     $(".qtybutton").on("click", function() {
         var $button = $(this);
@@ -157,6 +170,22 @@ $(document).on('page:change', function(event) {
             }
         }
         $button.parent().find("input").val(newVal);
+        var s_total = newVal * 100;
+        var tva = s_total * 18/100;
+        $(".cart-total").find(".s_total").html(s_total + " <em>F CFA</em>");
+        $(".cart-total").find(".tva").html(tva + " <em>F CFA</em>");
+        $(".cart-total").find(".total").html(s_total + tva + " <em>F CFA</em>");
+        $(".cart-plus-minus-box").trigger('input');
+    });
+
+    $(".cart-plus-minus-box").bind("input",function () {
+        var link = $(".link_commande").attr("href").substr(0, $(".link_commande").attr("href").indexOf('?'));
+        var qte = $(".cart-plus-minus-box").val();
+        var s_total = qte *100;
+        var tva = s_total * 18/100;
+        var total = (qte * 100) + tva;
+        var new_link = link + "?qte="+qte+"&tva="+tva+"&total="+total;
+        $(".link_commande").attr("href",new_link);
     });
 
     /*----------------------------

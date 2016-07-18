@@ -4,9 +4,9 @@ class BidsController < ApplicationController
      def create
          service = PlaceBid.new bids_params
          if service.execute
-             redirect_to product_path(params[:product_id]), notice: "Bid successfully placed."
+             redirect_to auction_path(params[:auction_id]), notice: "Bid successfully placed."
          else
-             redirect_to product_path(params[:product_id]), alert: "Something went wrong."
+             redirect_to auction_path(params[:auction_id]), alert: "Something went wrong."
 
          end
      end

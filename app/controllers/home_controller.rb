@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
     def index
-            @productsOnline= Product.joins(:auction).where("auctions.auction_close > ?", Time.now)
+            @auctionOnline= Auction.joins(:product).where("auctions.auction_close > ?", Time.now)
     end
 end
