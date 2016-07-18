@@ -26,8 +26,6 @@ class OrdersController < ApplicationController
   # def edit
   # end
 
-  # POST /orders
-  # POST /orders.json
   def create
      # @order = Order.new(order_params)
     invoice = Paydunya::Checkout::Invoice.new

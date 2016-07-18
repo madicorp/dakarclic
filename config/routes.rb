@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'how_it_works' => 'how_it_works#index'
 
+  get 'confirm' => 'confirm#index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
