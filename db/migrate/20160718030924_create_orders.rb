@@ -10,6 +10,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :status
       t.string :payment_method
       t.timestamps null: false
+      t.references :user, index: true, foreign_key: true
     end
   end
 end
