@@ -1,0 +1,12 @@
+.autobid
+  %h2.center.cRed
+    %span
+      %i.fa.fa-cog
+      Robot
+  =form_for [@auction,Bid.new] do |f|
+    %p.labelrobot Besoin d'un break? Laisser le robot enchérir pour vous.
+    .robotContent
+      %input.robotInput{:name => "bids", :type => "text", :value => "5"}
+      =f.button "", class: "robotOK"
+    .bottom.nopad
+      %a Comment ça marche?

@@ -1,0 +1,10 @@
+= form_for @robot do |f|
+  - if @robot.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@robot.errors.count, "error")} prohibited this robot from being saved:"
+      %ul
+        - @robot.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

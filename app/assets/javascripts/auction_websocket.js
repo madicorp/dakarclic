@@ -33,6 +33,12 @@ AuctionSocket.prototype.initBinds = function() {
       case 'lost':
         _this.lost();
         break;
+        case 'robot_on':
+            alert("on");
+            break;
+        case 'robot_off':
+            alert("off");
+            break;
     }
     console.log(e);
   };

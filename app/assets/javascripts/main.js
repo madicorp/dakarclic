@@ -220,5 +220,13 @@ $(document).on('ready page:change', function(event) {
         $(".masud").slideToggle();
     });
 
+    /*----------------------------
+     bootstrap switch function
+     ------------------------------ */
+    $(".make-switch").bootstrapSwitch();
+    /*-------------------------------
+    Date Picker ..
+    ------------------------------- */
+    $(".timepicker").durationPicker({ showSeconds: true });
 
 });

@@ -1,6 +1,7 @@
 class Auction < ActiveRecord::Base
   belongs_to :product
   has_many :bids
+  has_many :robots
 
   def top_bid
       bids.order(value: :desc).first

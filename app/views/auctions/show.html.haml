@@ -1,4 +1,4 @@
-.single-auction.product-wraper.mt60
+.single-product-wraper.mt60
   .single-prodcut-area
     .container
       .row.row-padd
@@ -21,6 +21,21 @@
                         Félicitations ,vous êtes temporairement le gagnant.
                       -else
                         Ooopss. Vous êtes hors enchère en ce moment.
+              .price-type
+                .form-group
+                  %label Status Robot
+                  %input.make-switch.activate-robot{"data-off-text" => "<i class='fa fa-power-off'></i>", "data-on-text" => "<i class='fa fa-android'></i>", "data-handle-width" => "100", "data-size" => "large", "data-on-color" => "success", :type => "checkbox"}/
+              .ratting-review.robot-config-area.hide
+                .product-quantity.row
+                  .cart-quantity.col-md-12
+                    .form-group.col-md-5
+                      %label Unite
+                      %input.form-control{:type => "number", :value => "02"}/
+                    .col-md-5
+                      %label Duration
+                      %input.form-control.timepicker{:type => "text"}
+                    .form-group.col-md-2
+                      %button.btn.btn-sm.btn-primary activer
               .running-price.desblockprice
                 %h1.desprice #{@auction.current_bid} FCFA
                 -if current_user

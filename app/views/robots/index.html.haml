@@ -1,0 +1,19 @@
+%h1 Listing robots
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @robots.each do |robot|
+      %tr
+        %td= link_to 'Show', robot
+        %td= link_to 'Edit', edit_robot_path(robot)
+        %td= link_to 'Destroy', robot, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Robot', new_robot_path

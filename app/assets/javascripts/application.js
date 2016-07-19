@@ -13,6 +13,8 @@
 //= require jquery.min
 //= require jquery.turbolinks.min
 //= require bootstrap-sprockets
+//= require bootstrap-switch
+//= require jquery-duration-picker
 //= require mustache
 //= require meanmenu
 //= require jquery.nivo.slider
@@ -102,6 +104,15 @@
                 }
             });
         })(jQuery);
+
+        $(".activate-robot").on('switchChange.bootstrapSwitch', function(event, state) {
+            if (state){
+                $(".robot-config-area").removeClass("hide");
+            }else {
+                $(".robot-config-area").addClass("hide");
+
+            }
+        });
     });
 
 

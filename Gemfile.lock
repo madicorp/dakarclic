@@ -47,6 +47,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-switch-rails (3.3.3)
     builder (3.2.2)
     byebug (9.0.5)
     cancancan (1.15.0)
@@ -269,6 +270,7 @@ DEPENDENCIES
   animate-rails
   autoprefixer-rails
   bootstrap-sass
+  bootstrap-switch-rails
   byebug
   cancancan
   carrierwave
@@ -284,6 +286,7 @@ DEPENDENCIES
   jquery-countdown-rails
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   modernizr-rails
   owlcarousel-rails
   paydunya

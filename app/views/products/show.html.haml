@@ -30,8 +30,7 @@
                     .cart-btn.nopad
                       %a.white{:href => "#login-modal", :title => "Enchérir" , "data-toggle" => "modal" }
                         Enchérir
-                      %a.wishl{:href => "#", :title => "Ajouter aux souhaits"}
-                        %i.fa.fa-heart
+                =render "autobid"
             .count-bought
               .time-counter
                 %div{"data-countdown" => @product.auction.auction_close}
