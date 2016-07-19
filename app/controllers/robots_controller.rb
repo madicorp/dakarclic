@@ -1,3 +1,4 @@
+require "activate_robot"
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
 
@@ -24,6 +25,14 @@ class RobotsController < ApplicationController
   # POST /robots
   # POST /robots.json
   def create
+    service = ActivateRobot.new
+    if service.create robot_params
+      redirect_to auction_path(params[:auction_id]), notice: "Bid successfully placed."
+    else
+      redirect_to auction_path(params[:auction_id]), alert: "Something went wrong."
+
+    end
+=begin
     @robot = Robot.new(robot_params)
 
     respond_to do |format|
@@ -35,11 +44,21 @@ class RobotsController < ApplicationController
         format.json { render json: @robot.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # PATCH/PUT /robots/1
   # PATCH/PUT /robots/1.json
   def update
+    @robot = Robot.new robot_params
+    p @robot.units
+    service = ActivateRobot.new
+    if service.create @robot
+      redirect_to auction_path(params[:auction_id]), notice: "Bid successfully placed."
+    else
+      redirect_to auction_path(params[:auction_id]), alert: "Something went wrong."
+    end
+=begin
     respond_to do |format|
       if @robot.update(robot_params)
         format.html { redirect_to @robot, notice: 'Robot was successfully updated.' }
@@ -49,6 +68,7 @@ class RobotsController < ApplicationController
         format.json { render json: @robot.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # DELETE /robots/1
@@ -64,11 +84,13 @@ class RobotsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_robot
-      @robot = Robot.find(params[:id])
+      @robot = Robot.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def robot_params
-      params.fetch(:robot, {})
+      params.require(:robot).permit(:ends_at,:units, :is_active).merge!(
+          user_id: current_user.id,
+          auction_id: params[:auction_id])
     end
 end

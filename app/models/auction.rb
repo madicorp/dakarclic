@@ -19,8 +19,11 @@ class Auction < ActiveRecord::Base
       if(top_bid.nil?)
           '...'
       else
-          user = User.find_by_id top_bid.user_id
-          user.name
+           top_bid.user.name
       end
+  end
+
+  def active_robots
+      Robot.joins(:auction).where(:is_active => true, :auction_id => self.id)
   end
 end

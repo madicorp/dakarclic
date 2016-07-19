@@ -1,5 +1,10 @@
 class AuctionsController < ApplicationController
 
+  helper_method :current_user
+
+  def current_user=(user)
+    @current_user = user
+  end
     def create
         @product = Product.find params[:product_id]
         @auction = Auction.new auction_params.merge! product_id: @product.id
@@ -15,6 +20,12 @@ class AuctionsController < ApplicationController
     # GET /auctions/1.json
     def show
       @auction = Auction.find(params[:id])
+      if ! current_user.nil?
+        @robot = Robot.find_by_user_id_and_auction_id  current_user.id , @auction.id
+      end
+      if @robot.nil?
+        @robot = Robot.new
+      end
     end
 
     private

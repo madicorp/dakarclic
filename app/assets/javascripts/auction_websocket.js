@@ -1,5 +1,5 @@
 var AuctionSocket = function(user_id, auction_id, form) {
-  this.user_id = user_id;
+  this.user_id = sessionStorage.getItem('ours');;
   this.auction_id = auction_id;
   this.form = $(form);
 
@@ -22,10 +22,10 @@ AuctionSocket.prototype.initBinds = function() {
 
     switch(tokens[0]) {
       case 'bidok':
-        _this.bid(tokens[1], tokens[2], tokens[3], tokens[4]);
+        _this.bid(tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
         break;
       case 'outbid':
-        _this.outbid(tokens[1],tokens[2]);
+        _this.outbid(tokens[1],tokens[2],tokens[3],tokens[4]);
         break;
       case 'won':
         _this.won();
@@ -33,9 +33,7 @@ AuctionSocket.prototype.initBinds = function() {
       case 'lost':
         _this.lost();
         break;
-        case 'robot_on':
-            alert("on");
-            break;
+       
         case 'robot_off':
             alert("off");
             break;
@@ -52,20 +50,24 @@ AuctionSocket.prototype.sendBid = function() {
   }));
 };
 
-AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close) {
+AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close, user,robot) {
 
     $('.messunits').html(units+ 'Unités');
 
     $('.nbench').html(nbEnch+ ' Enchères');
-
-
-    $('.infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
+    console.log(user+ " ..... "+this.user_id);
+    if(user == this.user_id){
+        $('#infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
+    }
+    else {
+        $('#infogagn').html('Ooopss. Vous êtes hors enchère en ce moment.')
+    }
 
 
     $('.desprice').html(
         value + 'FCFA'
     );
-    $('.infogagn').addClass('infogagn_inverse').removeClass('infogagn');
+    $('#infogagn').addClass('infogagn_inverse').removeClass('infogagn');
 
     $('.infogagn_inverse').animateinfogagn('wobble');
 
@@ -75,16 +77,22 @@ AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close) {
 
 };
 
-AuctionSocket.prototype.outbid = function(value, nbEnch) {
+AuctionSocket.prototype.outbid = function(value, nbEnch, user ,units_robot) {
     $('.nbench').html(nbEnch+ ' Enchères');
+    if(user == this.user_id){
+        $('#infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
 
-    $('.infogagn').html('Ooopss. Vous êtes hors enchère en ce moment.')
+    }
+    else {
+        $('#infogagn').html('Ooopss. Vous êtes hors enchère en ce moment.')
+        console.log("pas ok");
+    }
 
 
     $('.desprice').html(
       value + 'FCFA'
     );
-    $('.infogagn').addClass('infogagn_inverse').removeClass('infogagn');
+    $('#infogagn').addClass('infogagn_inverse').removeClass('infogagn');
 
     $('.infogagn_inverse').animateinfogagn('wobble');
 

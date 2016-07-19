@@ -1,5 +1,5 @@
--if @product.auction.top_bid.present?
-  -if @product.auction.top_bid.user ==current_user
+-if @auction.top_bid.present?
+  -if @auction.top_bid.user ==current_user
     %p You won the auction!
   -else
     %p Sorry you lost the auction!

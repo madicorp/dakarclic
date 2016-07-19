@@ -1,11 +1,9 @@
 class PlaceBid
-    attr_reader :auction, :status, :user, :value , :units, :auction_close , :nb_ench , :productid
-    def initialize options
+    attr_reader :auction, :status, :user, :value , :units, :auction_close , :nb_ench , :productid, :units_robot
+    def execute options
         @user_id = options[:user_id].to_i
         @auction_id = options[:auction_id].to_i
-    end
 
-    def execute
         @auction = Auction.find @auction_id
         @user = User.find @user_id
 
@@ -42,4 +40,39 @@ class PlaceBid
             return false
         end
     end
+  def robot robot
+      @auction = robot.auction
+
+      if auction.ended? && auction.top_bid.user_id == robot.user_id
+          @status = :won
+          return false
+      end
+
+      if robot.units >= 2 && robot.ends_at > Time.now
+          auction.value += auction.valuetoinc
+          auction.auction_close += auction.timetoinc.seconds
+          robot.units -= 2
+          @value = auction.value
+          @auction_close = auction.auction_close
+          @user = robot.user
+          @units = user.units
+          @units_robot = robot.units
+          ActiveRecord::Base.transaction do
+              auction.save
+              robot.save
+          end
+          @nb_ench = auction.bids.size + 1
+      else
+        robot.is_active = false
+        robot.save
+      end
+
+      bid = auction.bids.build value: @value, user_id: robot.user.id
+
+      if bid.save
+          return true
+      else
+          return false
+      end
+  end
 end

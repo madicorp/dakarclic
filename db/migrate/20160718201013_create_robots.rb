@@ -3,7 +3,7 @@ class CreateRobots < ActiveRecord::Migration
     create_table :robots do |t|
       t.references :user, index: true, foreign_key: true
       t.references :auction, index: true, foreign_key: true
-      t.integer :ends_at
+      t.timestamps :ends_at
       t.integer :units
       t.boolean :is_active
 

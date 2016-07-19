@@ -14,7 +14,7 @@
             .auction.product-des
               %ul
                 %li Chaque offre augmente l'enchère  de #{@auction.valuetoinc} FCFA
-                %li.infogagn
+                %li.infogagn#infogagn
                   -if @auction.top_bid.present?
                     -if current_user
                       -if @auction.top_bid.user_id == current_user.id
@@ -22,20 +22,8 @@
                       -else
                         Ooopss. Vous êtes hors enchère en ce moment.
               .price-type
-                .form-group
-                  %label Status Robot
-                  %input.make-switch.activate-robot{"data-off-text" => "<i class='fa fa-power-off'></i>", "data-on-text" => "<i class='fa fa-android'></i>", "data-handle-width" => "100", "data-size" => "large", "data-on-color" => "success", :type => "checkbox"}/
-              .ratting-review.robot-config-area.hide
-                .product-quantity.row
-                  .cart-quantity.col-md-12
-                    .form-group.col-md-5
-                      %label Unite
-                      %input.form-control{:type => "number", :value => "02"}/
-                    .col-md-5
-                      %label Duration
-                      %input.form-control.timepicker{:type => "text"}
-                    .form-group.col-md-2
-                      %button.btn.btn-sm.btn-primary activer
+                -if current_user
+                  =render "robot"
               .running-price.desblockprice
                 %h1.desprice #{@auction.current_bid} FCFA
                 -if current_user
@@ -52,3 +40,8 @@
                 %div{"data-countdown" => @auction.auction_close}
               .bought
                 %span.nbench #{@auction.bids.size} Enchères
+-if !current_user.nil?
+  :javascript
+    $(function() {
+            sessionStorage.setItem('ours', "#{current_user.id}");
+     })
