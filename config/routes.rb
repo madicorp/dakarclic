@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
 
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   get 'talking'=> 'talking#index'
 
   get 'submission' => 'submission#index'
 
   get 'how_it_works' => 'how_it_works#index'
+
+  get 'confirm' => 'confirm#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -20,11 +26,15 @@ Rails.application.routes.draw do
   resources :orders do
   end
   resources :auctions do
-      resources :bids , only: [ :create] do
-      end
-      resources :robots , only: [ :create, :update] do
-      end
+    resources :bids , only: [ :create] do
+    end
+    resources :robots , only: [ :create, :update] do
+    end
   end
+
+  get '404' => 'errors#not_found'
+  get '500' => 'errors#internal_server_error'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

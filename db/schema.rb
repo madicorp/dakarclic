@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718201013) do
+ActiveRecord::Schema.define(version: 20160718030924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160718201013) do
   add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "reference"
     t.text     "designation"
     t.decimal  "unit_price_ht"
@@ -63,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160718201013) do
     t.string   "payment_method"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "user_id"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -73,19 +73,6 @@ ActiveRecord::Schema.define(version: 20160718201013) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "robots", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "auction_id"
-    t.datetime "ends_at"
-    t.integer  "units"
-    t.boolean  "is_active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "robots", ["auction_id"], name: "index_robots_on_auction_id", using: :btree
-  add_index "robots", ["user_id"], name: "index_robots_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -114,6 +101,4 @@ ActiveRecord::Schema.define(version: 20160718201013) do
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
   add_foreign_key "orders", "users"
-  add_foreign_key "robots", "auctions"
-  add_foreign_key "robots", "users"
 end

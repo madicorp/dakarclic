@@ -45,4 +45,5 @@ Rails.application.configure do
 
   config.log_level = :debug
 
+  config.consider_all_requests_local = false
 end
