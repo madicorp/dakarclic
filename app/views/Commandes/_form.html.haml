@@ -1,9 +1,9 @@
-= form_for @order do |f|
-  - if @order.errors.any?
+= form_for @commande do |f|
+  - if @commande.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
+      %h2= "#{pluralize(@commande.errors.count, "error")} prohibited this order from being saved:"
       %ul
-        - @order.errors.full_messages.each do |msg|
+        - @commande.errors.full_messages.each do |msg|
           %li= msg
 
   #accordion.panel-group.pb60{"aria-multiselectable" => "true", :role => "tablist"}
@@ -24,12 +24,13 @@
                     %form{:action => "#"}
                       .method-input-box
                         %p
-                          %input{:checked => "checked",:name => "payment", :type => "radio", :value => "paydunya"}/
+                          = radio_button_tag :payment, "paydunya" , :checked => "checked"
+                          -#%input{:checked => "checked",:name => "payment", :type => "radio", :value => "paydunya"}
                           %label
                             %span
                               =image_tag "icon/paydunya.png"
                         %p
-                          %input{ :name => "payment", :type => "radio", :value => "paypal"}/
+                          = radio_button_tag :payment, "paypal"
                           %label
                             %span
                               =image_tag "icon/paypal.png"
@@ -65,23 +66,22 @@
                     %td.left
                       %b Sub-Total:
                     %td.right.s_total
-                      = @order.total_ht
+                      = @commande.total_ht
                       %em F CFA
                   %tr
                     %td.left
                       %b VAT (18%):
                     %td.right.tva
-                      = @order.total_ttc - @order.total_ht
+                      = @commande.total_ttc - @commande.total_ht
                       %em F CFA
                   %tr
                     %td.left.last
                       %b Total:
                     %td.right.total.last
-                      = @order.total_ttc
-                      =f.hidden_field :total_ttc
-                      =f.hidden_field :total_ht
-
+                      = @commande.total_ttc
                       %em F CFA
+              =f.hidden_field :total_ttc
+              =f.hidden_field :total_ht
           .buttons.common-btn
             -if current_user
               =f.button "Commander" ,"data-loading-text" => "Loading...", class: "btn btn-primary"

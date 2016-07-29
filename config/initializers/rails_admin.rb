@@ -12,7 +12,7 @@ RailsAdmin.config do |config|
   ## == Cancan ==
   # config.authorize_with :cancan, AdminAbility
     config.authorize_with do
-        redirect_to main_app.new_user_session_path unless current_user
+        redirect_to main_app.new_user_session_path unless current_user.admin?
     end
   ## == Pundit ==
   # config.authorize_with :pundit
