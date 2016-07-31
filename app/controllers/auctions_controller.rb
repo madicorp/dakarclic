@@ -18,7 +18,7 @@ class AuctionsController < ApplicationController
     end
 
     def closed
-        @auctionClosed  = Auction.joins(:product).where("auctions.auction_close < ?", Time.now)
+        @auctionClosed  = Auction.paginate(page: params[:page]).order('created_at DESC').joins(:product).where("auctions.auction_close < ?", Time.now)
     end
 
     def online
