@@ -8,10 +8,11 @@
               %a{:href => root_path}
                 Accueil
             %li
-              -if request.original_url == root_url
-                %a{:href => "#online"} En Cours
-              -else
-                %a{:href => root_url << "#online"} En Cours
+              -#-if request.original_url == root_url
+              -#  %a{:href => "#online"} En Cours
+              -#-else
+              -#  %a{:href => root_url << "#online"} En Cours
+              %a{:href => online_path} En Cours
             %li
               -if request.original_url  == root_url
                 %a{:href => "#coming"} A venir
