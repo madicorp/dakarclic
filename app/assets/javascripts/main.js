@@ -37,9 +37,7 @@ $(document).on('ready page:change', function(event) {
         $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D<span>J</span></span></span><span class="cdown hour"><span class="time-count">%-H<span>H</span></span></span><span class="cdown minutes"><span class="time-count">%M<span>M</span></span></span> <span class="cdown second"><span class="time-count">%S<span>S</span></span></span>'));
         if(event.type == 'finish')
         {
-            // window.location.reload();
-            console.log(event)
-            event.stopImmediatePropagation();
+            console.log(event);
         }
 
         });

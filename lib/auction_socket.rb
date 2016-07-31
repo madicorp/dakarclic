@@ -58,7 +58,7 @@ class AuctionSocket
         )
 
         if service.execute
-            socket.send "bidok #{service.value} #{service.units} #{service.nb_ench} #{service.auction_close}"
+            socket.send "bidok;#{service.value};#{service.units};#{service.nb_ench};#{service.auction_close}"
             notify_outbids socket, service.value , service.nb_ench
         else
             if service.status == :won
@@ -69,7 +69,7 @@ class AuctionSocket
 
     def notify_outbids socket, value , nb_ench
         @clients.reject { |client| client == socket || !same_auction?(client,socket) }.each do |client|
-            client.send "outbid #{value} #{nb_ench}"
+            client.send "outbid;#{value};#{nb_ench}"
         end
     end
 

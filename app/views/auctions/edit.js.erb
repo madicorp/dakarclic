@@ -1,0 +1,9 @@
+$('.modal-body').html('<%= j render("show" , :remote => true) %>');
+
+// Show the dynamic dialog
+$('#auction-modal').modal("show");
+
+// Set focus to the first element
+$('#dialog').on('shown.bs.modal', function () {
+  $('.first_input').focus()
+})

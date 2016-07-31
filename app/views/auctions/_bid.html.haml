@@ -19,16 +19,15 @@
         -#-else
         -#  %a.white{:href => "#", :title => "Enchérir"}
         -#    Enchérir
-        %a.wishl{:href => "#", :title => "Ajouter aux souhaits"}
-          %i.fa.fa-heart
 
 :javascript
 
   $(function(){
 
-   App = {
+    App = {
      websocket_url: "ws://#{request.host}:#{request.port}/"
-  };
+    };
+
     var user_id = "#{current_user.id}";
     var auction_id = "#{@auction.id}";
     var form = $("#new_bid");
