@@ -13,6 +13,9 @@
 //= require jquery.min
 //= require jquery.turbolinks.min
 //= require bootstrap-sprockets
+//= require bootstrap-switch
+//= require jquery.form
+//= require jquery-duration-picker
 //= require mustache
 //= require meanmenu
 //= require jquery.nivo.slider
@@ -24,6 +27,8 @@
 //= require main
 //= require auction_websocket
 //= require turbolinks
+//= require robot
+
 
     $(document).on('ready page:change',function (event) {
         (function ($) {

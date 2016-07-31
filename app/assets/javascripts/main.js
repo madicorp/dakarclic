@@ -219,6 +219,5 @@ $(document).on('ready page:change', function(event) {
         $(this).toggleClass('clicked');
         $(".masud").slideToggle();
     });
-
-
+    
 });

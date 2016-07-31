@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718030924) do
+ActiveRecord::Schema.define(version: 20160729210323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,6 @@ ActiveRecord::Schema.define(version: 20160718030924) do
   end
 
   add_index "auctions", ["product_id"], name: "index_auctions_on_product_id", using: :btree
-
-  create_table "auto_bids", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "auction_id"
-    t.integer "max_bid"
-  end
-
-  add_index "auto_bids", ["auction_id"], name: "index_auto_bids_on_auction_id", using: :btree
-  add_index "auto_bids", ["user_id"], name: "index_auto_bids_on_user_id", using: :btree
 
   create_table "bids", force: :cascade do |t|
     t.integer  "user_id"
@@ -74,6 +65,19 @@ ActiveRecord::Schema.define(version: 20160718030924) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "robots", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "auction_id"
+    t.datetime "ends_at"
+    t.integer  "units"
+    t.boolean  "is_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "robots", ["auction_id"], name: "index_robots_on_auction_id", using: :btree
+  add_index "robots", ["user_id"], name: "index_robots_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -96,9 +100,9 @@ ActiveRecord::Schema.define(version: 20160718030924) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "auctions", "products"
-  add_foreign_key "auto_bids", "auctions"
-  add_foreign_key "auto_bids", "users"
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "robots", "auctions"
+  add_foreign_key "robots", "users"
 end
