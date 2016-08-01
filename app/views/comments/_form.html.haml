@@ -1,0 +1,28 @@
+.well
+  = form_for @comment, remote: true do |f|
+    .form-group
+      = f.label :body, 'Entrer votre commentaire:'
+      = f.text_area :body, rows: 3, class: 'form-control', required: true, maxlength: 2000
+      %small.label.label-warning Ne peut pas être vide ou contenir plus de 2000 symboles.
+      %p
+      .cart-btn.nopad
+        =f.button "Poster", class: "btn btn-primary customenc"
+
+:javascript
+
+  $(function(){
+
+    App = {
+     websocket_url: "ws://#{request.host}:#{request.port}/"
+    };
+
+    var user_id = "#{current_user.id}";
+    var form = $("#new_comment");
+
+    var chatSocket = new ChatSocket(
+      user_id,
+      form
+    );
+
+
+  });

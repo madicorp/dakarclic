@@ -399,3 +399,23 @@ em{
 .hidden{
   display : none
 }
+
+.media-left, .media-right, .media-body {
+  display: table-cell;
+  vertical-align: top;
+}
+.media-heading {
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+.text-muted {
+  color: #777777;
+}
+.media-list {
+  list-style: outside none none;
+  padding-left: 0;
+}
+
+.media {
+  margin-top: 15px;
+}

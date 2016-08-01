@@ -24,6 +24,8 @@
 //= require main
 //= require auction_websocket
 //= require turbolinks
+//= require chat_websocket
+//= require polling
 
     $(document).on('ready page:change',function (event) {
         (function ($) {

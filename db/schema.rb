@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727121157) do
+ActiveRecord::Schema.define(version: 20160801215016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,12 +68,34 @@ ActiveRecord::Schema.define(version: 20160727121157) do
 
   add_index "commandes", ["user_id"], name: "index_commandes_on_user_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "robots", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "auction_id"
+    t.datetime "ends_at"
+    t.integer  "units"
+    t.boolean  "is_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "robots", ["auction_id"], name: "index_robots_on_auction_id", using: :btree
+  add_index "robots", ["user_id"], name: "index_robots_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -91,6 +113,7 @@ ActiveRecord::Schema.define(version: 20160727121157) do
     t.datetime "updated_at",                          null: false
     t.boolean  "admin"
     t.integer  "units"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -102,4 +125,6 @@ ActiveRecord::Schema.define(version: 20160727121157) do
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
   add_foreign_key "commandes", "users"
+  add_foreign_key "robots", "auctions"
+  add_foreign_key "robots", "users"
 end
