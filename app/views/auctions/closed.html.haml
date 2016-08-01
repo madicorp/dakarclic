@@ -19,3 +19,5 @@
                   %span= auction.topbid_user
                 .running-price
                   %span.price-custom{"data-productid" => auction.product.id} #{auction.value} FCFA
+#infinite-scroll
+  = will_paginate @auctionClosed
