@@ -8,7 +8,7 @@
           .btn.seemore
             =link_to "Plus" , "#"
     .row.row-padd
-      - @auctionOnline.each do |auction|
+      -@auctionOnline.each do |auction|
         .col-md-3.col-sm-3.col-padd-custom
           .single-product{:id => "auction#{auction.id}"}
             .av_title= auction.product.name
@@ -21,7 +21,7 @@
             .single-product-text
               .price-type
                 .old-price
-                  %span= auction.topbid_user
+                  %span= auction.top_bid.user.name unless auction.top_bid.nil?
                 .running-price
                   %span.price-custom{"data-productid" => auction.product.id} #{auction.value} FCFA
               .cart-btn

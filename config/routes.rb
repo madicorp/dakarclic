@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  resources :users do
+    resources :orders  do
+    end
+    resources :robots  do
+    end
+  end
 
   resources :products do
   end
@@ -27,6 +33,8 @@ Rails.application.routes.draw do
 
   resources :auctions do
       resources :bids , only: [ :create] do
+      end
+      resources :robots  do
       end
   end
 
