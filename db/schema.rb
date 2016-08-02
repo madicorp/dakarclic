@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718030924) do
+ActiveRecord::Schema.define(version: 20160727121157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,8 @@ ActiveRecord::Schema.define(version: 20160718030924) do
   add_index "bids", ["auction_id"], name: "index_bids_on_auction_id", using: :btree
   add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
-  create_table "orders", force: :cascade do |t|
+  create_table "commandes", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "reference"
     t.text     "designation"
     t.decimal  "unit_price_ht"
@@ -62,10 +63,10 @@ ActiveRecord::Schema.define(version: 20160718030924) do
     t.string   "payment_method"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "user_id"
+    t.string   "linkpdf"
   end
 
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "commandes", ["user_id"], name: "index_commandes_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -100,5 +101,5 @@ ActiveRecord::Schema.define(version: 20160718030924) do
   add_foreign_key "auto_bids", "users"
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
-  add_foreign_key "orders", "users"
+  add_foreign_key "commandes", "users"
 end

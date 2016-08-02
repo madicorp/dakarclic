@@ -17,6 +17,9 @@ class AuctionsController < ApplicationController
       @auction = Auction.find(params[:id])
     end
 
+    def edit
+    end
+
     private
     def auction_params
         params.require(:auction).permit(:value , :auction_close)

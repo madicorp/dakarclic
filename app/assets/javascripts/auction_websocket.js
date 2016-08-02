@@ -18,7 +18,7 @@ AuctionSocket.prototype.initBinds = function() {
 
   this.socket.onmessage = function(e) {
 
-    var tokens = e.data.split(' ');
+    var tokens = e.data.split(';');
 
     switch(tokens[0]) {
       case 'bidok':
@@ -46,7 +46,7 @@ AuctionSocket.prototype.sendBid = function() {
   }));
 };
 
-AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close) {
+AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close,auctionid) {
 
     $('.messunits').html(units+ 'Unités');
 
@@ -59,6 +59,7 @@ AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close) {
     $('.desprice').html(
         value + 'FCFA'
     );
+
     $('.infogagn').addClass('infogagn_inverse').removeClass('infogagn');
 
     $('.infogagn_inverse').animateinfogagn('wobble');
@@ -66,6 +67,20 @@ AuctionSocket.prototype.bid = function(value,units,nbEnch, auction_close) {
     $('.desprice').addClass('desprice_inverse').removeClass('desprice');
 
     $('.desprice_inverse').animateCss('pulse');
+
+    $('#countdownauction').attr("data-countdown", auction_close);
+
+    $('#countdownauction').attr("data-countdown", function() {
+        var $this = $(this),
+            finalDate = auction_close;
+
+        $this.countdown(finalDate, function(event) {
+            $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D<span>J</span></span></span><span class="cdown hour"><span class="time-count">%-H<span>H</span></span></span><span class="cdown minutes"><span class="time-count">%M<span>M</span></span></span> <span class="cdown second"><span class="time-count">%S<span>S</span></span></span>'));
+        });
+    });
+
+    this.notifyHomePage(auctionid,value);
+
 
 };
 
@@ -86,8 +101,12 @@ AuctionSocket.prototype.outbid = function(value, nbEnch) {
 
     $('.desprice_inverse').animateCss('pulse');
 
+
 };
 
+AuctionSocket.prototype.notifyHomePage = function(auctionid,value){
+    $('#auction'+auctionid).find('.price-custom').html(value+'FCFA');
+}
 
 $.fn.extend({
     animateinfogagn: function (animationName) {

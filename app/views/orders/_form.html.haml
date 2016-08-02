@@ -102,10 +102,9 @@
                       %b Total:
                     %td.right.total.last
                       = @order.total_ttc
-                      =f.hidden_field :total_ttc
-                      =f.hidden_field :total_ht
-
                       %em F CFA
+              =f.hidden_field :total_ttc
+              =f.hidden_field :total_ht
           .buttons.common-btn
             -if current_user
               =f.button "Commander" ,"data-loading-text" => "Loading...", class: "btn btn-primary"
