@@ -24,9 +24,11 @@
 //= require jquery.countdown.min
 //= require jquery.fancybox.pack
 //= require jquery.elevateZoom-3.0.8.min
+//= require card
 //= require main
 //= require auction_websocket
 //= require turbolinks
+//= require order
 //= require robot
 //= require jquery_ujs
 //= require chat_websocket
