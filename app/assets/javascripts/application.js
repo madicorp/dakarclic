@@ -29,6 +29,7 @@
 //= require turbolinks
 //= require robot
 //= require jquery_ujs
+//= require chat_websocket
 
 
     $(document).on('ready page:change',function (event) {
@@ -81,23 +82,23 @@
     });
 
 
-    // show spinner on AJAX start
-    $(document).ajaxStart(function(){
-        $(".bg_load").show();
-    });
-
-    // hide spinner on AJAX stop
-    $(document).ajaxStop(function(){
-        $(".bg_load").hide();
-    });
-
-    $(document).on("ready page:update", function(){
-        $(".bg_load").show();
-    });
-
-    $(document).on("ready page:receive", function(){
-        $(".bg_load").hide();
-    });
+    // // show spinner on AJAX start
+    // $(document).ajaxStart(function(){
+    //     // $(".bg_load").show();
+    // });
+    //
+    // // hide spinner on AJAX stop
+    // $(document).ajaxStop(function(){
+    //     // $(".bg_load").hide();
+    // });
+    //
+    // $(document).on("ready page:update", function(){
+    //     // $(".bg_load").show();
+    // });
+    //
+    // $(document).on("ready page:receive", function(){
+    //     // $(".bg_load").hide();
+    // });
 
 
 

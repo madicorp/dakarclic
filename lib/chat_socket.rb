@@ -51,24 +51,25 @@ class ChatSocket
     end
 
     def chat socket, message
-        service = PlaceComment.new
-
+        # service = PlaceComment.new
+        #
         # if service.execute user_id: message['user_id'], message: message['message']
-        reponse = {
-            :action => 'chat',
-            :user_id => message['user_id'],
-            :message => message['message']
-        }.to_json
-        socket.send reponse
-        notify_other socket, message
-        # end
+            reponse = {
+                :action => 'chat',
+                :user_id => message['user_id'],
+                :message => message['message']
+            }.to_json
+            socket.send reponse
+            notify_other socket, message
+         # end
     end
 
   def notify_other socket , message
-      puts  @clients.size + "dfkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+
       @clients.reject { |client| client == socket  }.each do |client|
           reponse = {
-              :action => 'chatnotifother'
+              :action => 'chatnotifother',
+              :message => message['message']
           }.to_json
           client.send reponse
       end

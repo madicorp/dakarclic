@@ -6,23 +6,27 @@
       %small.label.label-warning Ne peut pas être vide ou contenir plus de 2000 symboles.
       %p
       .cart-btn.nopad
-        =f.button "Poster", class: "btn btn-primary customenc"
+        -if current_user
+          =f.button "Poster", class: "btn btn-primary customenc"
+        -else
+          %a.white{:href => "#login-modal", :title => "Poster" , "data-toggle" => "modal", class: "btn btn-primary" }
+            Poster
+-if current_user
+  :javascript
 
-:javascript
+      $(function(){
 
-  $(function(){
+      App = {
+        websocket_url: "ws://#{request.host}:#{request.port}/"
+      };
 
-    App = {
-     websocket_url: "ws://#{request.host}:#{request.port}/"
-    };
+        var user_id = "#{current_user.id}";
+        var form = $("#new_comment");
 
-    var user_id = "#{current_user.id}";
-    var form = $("#new_comment");
-
-    var chatSocket = new ChatSocket(
-      user_id,
-      form
-    );
+        var chatSocket = new ChatSocket(
+          user_id,
+          form
+        );
 
 
-  });
+    });

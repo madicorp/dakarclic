@@ -36,6 +36,8 @@ ChatSocket.prototype.initMessages = function() {
     }
     console.log(e);
   };
+
+    return false;
 };
 
 ChatSocket.prototype.sendMessage = function() {
@@ -60,7 +62,7 @@ ChatSocket.prototype.chat = function(message) {
 
         }
       });
-    
+
 }
 
 
