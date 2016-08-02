@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :products do
   end
 
-  resources :commandes do
+  resources :orders do
   end
 
   resources :auctions do
