@@ -1,4 +1,7 @@
 require 'paypal-sdk-rest'
+require 'money'
+require 'money/bank/google_currency'
+require 'monetize'
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
@@ -51,6 +54,7 @@ class OrdersController < ApplicationController
             puts invoice.response_text
           end
         when "card"
+          Money.default_bank = Money::Bank::GoogleCurrency.new
           card = card_params
           p  '%.2f' % @order.total_ht
           # ###Payment
@@ -65,18 +69,7 @@ class OrdersController < ApplicationController
                                      # as 'credit_card'
                                      :payer => {
                                          :payment_method => "credit_card",
-
-                                         # ###FundingInstrument
-                                         # A resource representing a Payeer's funding instrument.
-                                         # Use a Payer ID (A unique identifier of the payer generated
-                                         # and provided by the facilitator. This is required when
-                                         # creating or using a tokenized funding instrument)
-                                         # and the `CreditCardDetails`
                                          :funding_instruments => [{
-
-                                                                      # ###CreditCard
-                                                                      # A resource representing a credit card that can be
-                                                                      # used to fund a payment.
                                                                       :credit_card => {
                                                                           :type => card[:type],
                                                                           :number => card[:number].tr(" ", ""),
@@ -88,32 +81,17 @@ class OrdersController < ApplicationController
                                                                       }
                                                                   }]
                                      },
-                                     # ###Transaction
-                                     # A transaction defines the contract of a
-                                     # payment - what is the payment for and who
-                                     # is fulfilling it.
                                      :transactions =>  [{
-
-                                                            # Item List
-                                                            :item_list => {
-                                                                :items => [{
-                                                                               :name => "credit",
-                                                                               :sku => "credit",
-                                                                               :price => "100.00",
-                                                                               :currency => "EUR",
-                                                                               :quantity => @order.quantity
-                                                                           }]
-                                                            },
-
-                                                            # ###Amount
-                                                            # Let's you specify a payment amount.
                                                             :amount =>  {
-                                                                :total =>  '%.2f' % @order.total_ht,
-                                                                :currency =>  "EUR" },
+                                                                :total =>  '%.2f' % @order.total_ttc.to_money(:XOF).exchange_to(:EUR),
+                                                                :currency =>  "EUR",
+                                                                :details => {
+                                                                    :subtotal => '%.2f' % @order.total_ttc.to_money(:XOF).exchange_to(:EUR)
+                                                                }
+                                                            },
                                                             :description =>  "This is the payment transaction description."
                                                         }]
                                  })
-
           # Create Payment and return status( true or false )
           if @payment.create
             p "Payment[#{@payment.id}] created successfully"
@@ -124,42 +102,24 @@ class OrdersController < ApplicationController
           end
           redirect_to root_path
         when "paypal"
+          Money.default_bank = Money::Bank::GoogleCurrency.new
           @payment = PayPal::SDK::REST::Payment.new({
                                      :intent =>  "sale",
-
-                                     # ###Payer
-                                     # A resource representing a Payer that funds a payment
-                                     # Payment Method as 'paypal'
                                      :payer =>  {
-                                         :payment_method =>  "paypal" },
-
-                                     # ###Redirect URLs
+                                         :payment_method =>  "paypal"
+                                     },
                                      :redirect_urls => {
                                          :return_url => "http://localhost:3000/confirm/paypal",
-                                         :cancel_url => "http://localhost:3000/confirm/paypal" },
-
-                                     # ###Transaction
-                                     # A transaction defines the contract of a
-                                     # payment - what is the payment for and who
-                                     # is fulfilling it.
+                                         :cancel_url => "http://localhost:3000/confirm/paypal"
+                                     },
                                      :transactions =>  [{
-
-                                                            # Item List
-                                                            :item_list => {
-                                                                :items => [{
-                                                                               :name => "credit",
-                                                                               :sku => "credit",
-                                                                               :price => "100",
-                                                                               :currency => "EUR",
-                                                                               :quantity => @order.quantity
-                                                                           }]
+                                                           :amount =>  {
+                                                                :total => '%.2f' % @order.total_ttc.to_money(:XOF).exchange_to(:EUR),
+                                                                :currency =>  "EUR",
+                                                                :details => {
+                                                                    :subtotal => '%.2f' % @order.total_ttc.to_money(:XOF).exchange_to(:EUR)
+                                                                }
                                                             },
-
-                                                            # ###Amount
-                                                            # Let's you specify a payment amount.
-                                                            :amount =>  {
-                                                                :total =>  @order.total_ht,
-                                                                :currency =>  "EUR" },
                                                             :description =>  "This is the payment transaction description."
                                                         }]
                                  })
