@@ -57,13 +57,14 @@ ChatSocket.prototype.chat = function(message) {
         contentType: 'application/json',
         dataType: 'json', // format of the response
         success: function(msg) {
-            $.get('/comments')
+
         }
-});
+      });
+    
 }
 
 
 
 ChatSocket.prototype.chatnotifother = function () {
- alert('kdf')
+
 }

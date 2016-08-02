@@ -1,8 +1,9 @@
-%li.media.comment{"data-id" => comment.id}
-  = image_tag(profile_avatar(comment.user), alt: comment.user.name, class: "media-object" , width: 60 , height: 60, class: 'pull-left' )
-  .media-body
-    %h4.media-heading
-      #{comment.user.name} a dit :
-      %smal.text-muted
-        le #{comment.created_at.strftime('%-d %B %Y, %H:%M:%S')}
-    %p= comment.body
+- @comments.each do |comment|
+  %li.media.comment{"data-id" => comment.id}
+    = image_tag(profile_avatar(comment.user), alt: comment.user.name, class: "media-object" , width: 60 , height: 60, class: 'pull-left' )
+    .media-body
+      %h4.media-heading
+        #{comment.user.name} a dit :
+        %smal.text-muted
+          le #{comment.created_at.strftime('%d/%m/%Y, %H:%M:%S')}
+      %p= comment.body

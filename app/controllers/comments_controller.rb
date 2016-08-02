@@ -10,13 +10,14 @@ class CommentsController < ApplicationController
       respond_to do |format|
           if current_user
               @comment = current_user.comments.build(comment_params)
+              @comments = Comment.order('created_at DESC').limit(10)
               if @comment.save
                   flash.now[:success] = 'Your comment was successfully posted!'
               else
                   flash.now[:error] = 'Your comment cannot be saved.'
               end
               format.html {redirect_to comments_path}
-              format.js
+              format.js { render  content_type: 'text/javascript' }
           else
               format.html {redirect_to comments_path}
               format.js {render nothing: true}

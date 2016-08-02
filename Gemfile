@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -45,9 +46,12 @@ gem 'modernizr-rails'
 gem 'carrierwave'
 gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'paydunya'
+gem 'paperclip'
 gem 'paypal-sdk-rest'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails' #for bootstrap UI
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

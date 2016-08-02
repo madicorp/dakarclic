@@ -1,5 +1,5 @@
 <% if @comment.new_record? %>
 alert('Your comment cannot be saved.');
 <% else %>
-$('#comment_body').val('');
+$("#media-list").html('<%= escape_javascript(render :partial => "comment", :locals => { :comments => @comments} , :remote => true) %>');
 <% end %>
