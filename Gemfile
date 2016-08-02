@@ -42,6 +42,7 @@ gem 'font-awesome-rails'
 gem 'modernizr-rails'
 gem 'carrierwave'
 gem 'google-webfonts-rails', '~> 0.0.4'
+gem 'card-rails'
 gem 'paydunya'
 gem 'paypal-sdk-rest'
 # Use ActiveModel has_secure_password

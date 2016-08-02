@@ -393,9 +393,34 @@ em{
   }
 
 }
+.btn-radio {
+  width: 100%;
+}
+.img-radio {
+  opacity: 0.5;
+  margin-bottom: 5px;
+  height: 100px;
+}
 
+.space-20 {
+  margin-top: 20px;
+}
+
+.space-40 {
+  margin-top: 40px;
+}
 
 
 .hidden{
   display : none
+}
+
+.btn-dakarclick{
+  color: #fff !important;
+  background-color: #1253a4;
+  border-color: #1253a4;
+}
+
+.card-info .form-control{
+  width: 100% !important;
 }
