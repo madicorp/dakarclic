@@ -35,6 +35,9 @@ AuctionSocket.prototype.initBinds = function() {
             case 'won':
                 _this.won();
                 break;
+            case 'createrobotok':
+                _this.createrobot(data);
+                break;
             case 'lost':
                 _this.lost();
                 break;
@@ -101,6 +104,7 @@ AuctionSocket.prototype.bid = function(data) {
     if(data.disable_robot_id !== "undefined" && data.disable_robot_id != null){
         $("#robot_"+data.disable_robot_id).bootstrapSwitch('state', false, false);
         $("#conteur_"+data.disable_robot_id).addClass("hide")
+        $("#send_bid_btn").prop('disabled', true);
     }
 
 };
@@ -130,9 +134,29 @@ AuctionSocket.prototype.outbid = function(data) {
 
     if(data.disable_robot_id !== "undefined" && data.disable_robot_id != null){
         $("#robot_"+data.disable_robot_id).bootstrapSwitch('state', false, false);
+        $("#conteur_"+data.disable_robot_id).addClass("hide")
+        $("#send_bid_btn").prop('disabled', false);
 
     }
 
+};
+
+AuctionSocket.prototype.createrobot = function (data) {
+    $(".robot-config-area").addClass("hide");
+    $("#send_bid_btn").prop('disabled', true);
+    $("#conteur_"+data.user_id+""+data.auction_id).removeClass("hide");
+    $("#conteur_"+data.user_id+""+data.auction_id).find('div').attr('data-countdown',data.robot_ends_at);
+    var $this = $("#conteur_"+data.user_id+""+data.auction_id).find('div'),
+        finalDate = $("#conteur_"+data.user_id+""+data.auction_id).find('div').data('countdown');
+    $this.countdown(finalDate, function(event) {
+
+        $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D<span>J</span></span></span><span class="cdown hour"><span class="time-count">%-H<span>H</span></span></span><span class="cdown minutes"><span class="time-count">%M<span>M</span></span></span> <span class="cdown second"><span class="time-count">%S<span>S</span></span></span>'));
+        if(event.type == 'finish')
+        {
+            console.log(event);
+        }
+
+    });
 };
 
 

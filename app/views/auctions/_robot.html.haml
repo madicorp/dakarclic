@@ -6,7 +6,7 @@
     .col-md-6
       .count-bought
         .time-counter{:class => ("hide" unless @robot.is_active),:id => "conteur_#{current_user.id.to_s + @auction.id.to_s}"}
-          %div{"data-countdown" => @robot.ends_at}
+          %div{"data-countdown" => (@robot.ends_at if @robot.is_active)}
   .ratting-review.robot-config-area.hide
     .product-quantity.row
       .cart-quantity.col-md-12

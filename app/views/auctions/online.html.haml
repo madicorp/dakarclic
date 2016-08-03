@@ -21,7 +21,7 @@
             .single-product-text
               .price-type
                 .old-price
-                  %span= auction.topbid_user
+                  %span= auction.top_bid.user.name unless auction.top_bid.nil?
                 .running-price
                   %span.price-custom{"data-productid" => auction.product.id} #{auction.value} FCFA
               .cart-btn

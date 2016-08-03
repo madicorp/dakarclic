@@ -13,6 +13,19 @@
         $(".robot-config-area").removeClass "hide"
       else
         $(".robot-config-area").addClass "hide"
+        action = $("form.form_robot").attr('action')
+        success = (data) ->
+          console.log data
+          if data.reponse != null
+            try
+              object = JSON.parse data.reponse
+              auctionSocket = new AuctionSocket object.user_id, object.auction_id, $("#new_bid")
+              auctionSocket.socket.onopen = (e) ->
+                auctionSocket.createRobotSocket data.reponse
+            catch e
+              console.log e
+
+        $("form.form_robot").ajaxSubmit {success: success},action,'post'
 
     #-------------------------------
     #    Date Picker ..
@@ -25,11 +38,9 @@
     $(".form_robot").submit (event) ->
       event.preventDefault()
       $(this).ajaxSubmit success: (data) ->
-        console.log data
         if data.reponse != null
           try
             object = JSON.parse data.reponse
-            console.log object
             auctionSocket = new AuctionSocket object.user_id, object.auction_id, $("#new_bid")
             auctionSocket.socket.onopen = (e) ->
               auctionSocket.createRobotSocket data.reponse

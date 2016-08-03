@@ -49,6 +49,7 @@ ChatSocket.prototype.sendMessage = function(form) {
         user_id: this.user_id,
         message: $("#comment_body").val()
     }));
+    $(".message_input").val("");
 };
 
 ChatSocket.prototype.chatnotifother = function (data) {

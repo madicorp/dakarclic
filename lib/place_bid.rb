@@ -67,6 +67,7 @@ class PlaceBid
                     auction.value += auction.valuetoinc * times
                     auction.auction_close += auction.timetoinc.seconds * times
                     r2.is_active = false
+                    r2.ends_at = nil
                     @disable_robot_id = r2.id
                     @winner = r1.user_id
                 elsif u_r1 < u_r2
@@ -76,6 +77,7 @@ class PlaceBid
                     auction.value += auction.valuetoinc * times
                     auction.auction_close += auction.timetoinc.seconds * times
                     r1.is_active = false
+                    r1.ends_at = nil
                     @disable_robot_id = r1.id
                     @winner = r2.user_id
                 elsif u_r2 == u_r1
@@ -87,18 +89,22 @@ class PlaceBid
                   if u_r1 > u_r2
                       @winner = r1.user_id
                       r2.is_active = false
+                      r2.ends_at = nil
                       @disable_robot_id = r2.id
                   elsif u_r1 < u_r2
                       @winner = r2.user_id
                       r1.is_active = false
+                      r1.ends_at = nil
                       @disable_robot_id = r1.id
                   elsif u_r1 == u_r2
                     case @winner
                         when r1.user_id
                             r2.is_active = false
+                            r2.ends_at = nil
                             @disable_robot_id = r2.id
                         when r2.user_id
                             r1.is_active = false
+                            r1.ends_at = nil
                             @disable_robot_id = r1.id
                     end
                   end
@@ -115,23 +121,29 @@ class PlaceBid
                 auction.value += auction.valuetoinc
                 auction.auction_close += auction.timetoinc.seconds
                 robot.units -= 2
+                if  robot.units < 2
+                    robot.is_active = false
+                    robot.ends_at = nil
+                    @disable_robot_id =  robot.id
+                end
                 ActiveRecord::Base.transaction do
                     auction.save
                     robot.save
                 end
             end
-
-            @value = auction.value
-            @auction_close = auction.auction_close
-            @user = robot.user
-            @units = user.units
-            @units_robot = robot.units
-
-            @nb_ench = auction.bids.size + 1
         else
             robot.is_active = false
+            robot.ends_at = nil
             robot.save
         end
+
+        @value = auction.value
+        @auction_close = auction.auction_close
+        @user = robot.user
+        @units = user.units
+        @units_robot = robot.units
+
+        @nb_ench = auction.bids.size + 1
 
         @robot_id = robot.id
 

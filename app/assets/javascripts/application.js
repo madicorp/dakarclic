@@ -30,7 +30,6 @@
 //= require turbolinks
 //= require order
 //= require robot
-//= require jquery_ujs
 //= require chat_websocket
 
 
