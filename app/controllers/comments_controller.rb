@@ -16,14 +16,18 @@ class CommentsController < ApplicationController
               else
                   flash.now[:error] = 'Your comment cannot be saved.'
               end
-              format.html {redirect_to comments_path}
               format.js { render  content_type: 'text/javascript' }
           else
-              format.html {redirect_to comments_path}
               format.js {render nothing: true}
           end
       end
   end
+    def refresh
+        respond_to do |format|
+            @comments = Comment.order('created_at DESC').limit(10)
+            format.js { render "comments/create",  content_type: 'text/javascript' }
+        end
+    end
 
     def comment_params
         params.require(:comment).permit(:body)

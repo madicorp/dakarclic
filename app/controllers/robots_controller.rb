@@ -26,11 +26,12 @@ class RobotsController < ApplicationController
   # POST /robots.json
   def create
     @robot = Robot.new robot_params
+    @robot.ends_at = Time.now + params[:robot][:ends_at].to_i
     @service = ActivateRobot.new
     if @service.create @robot
       #redirect_to auction_path(params[:auction_id]), notice: "Bid successfully placed."
     else
-      redirect_to auction_path(params[:auction_id]), alert: "Something went wrong."
+      #redirect_to auction_path(params[:auction_id]), alert: "Something went wrong."
 
     end
 =begin
@@ -51,6 +52,7 @@ class RobotsController < ApplicationController
   # PATCH/PUT /robots/1.json
   def update
     @robot = Robot.new robot_params
+    @robot.ends_at = Time.now + params[:robot][:ends_at].to_i
     @service = ActivateRobot.new
     if @service.create @robot
       #redirect_to auction_path(params[:auction_id]), notice: "Bid successfully placed."
