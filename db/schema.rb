@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801215016) do
+ActiveRecord::Schema.define(version: 20160803002704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,15 +31,6 @@ ActiveRecord::Schema.define(version: 20160801215016) do
 
   add_index "auctions", ["product_id"], name: "index_auctions_on_product_id", using: :btree
 
-  create_table "auto_bids", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "auction_id"
-    t.integer "max_bid"
-  end
-
-  add_index "auto_bids", ["auction_id"], name: "index_auto_bids_on_auction_id", using: :btree
-  add_index "auto_bids", ["user_id"], name: "index_auto_bids_on_user_id", using: :btree
-
   create_table "bids", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "auction_id"
@@ -51,8 +42,16 @@ ActiveRecord::Schema.define(version: 20160801215016) do
   add_index "bids", ["auction_id"], name: "index_bids_on_auction_id", using: :btree
   add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
-  create_table "commandes", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
     t.string   "reference"
     t.text     "designation"
     t.decimal  "unit_price_ht"
@@ -63,19 +62,10 @@ ActiveRecord::Schema.define(version: 20160801215016) do
     t.string   "payment_method"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "linkpdf"
-  end
-
-  add_index "commandes", ["user_id"], name: "index_commandes_on_user_id", using: :btree
-
-  create_table "comments", force: :cascade do |t|
-    t.text     "body"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -96,6 +86,19 @@ ActiveRecord::Schema.define(version: 20160801215016) do
 
   add_index "robots", ["auction_id"], name: "index_robots_on_auction_id", using: :btree
   add_index "robots", ["user_id"], name: "index_robots_on_user_id", using: :btree
+
+  create_table "submissions", force: :cascade do |t|
+    t.text     "description"
+    t.text     "product"
+    t.string   "contact"
+    t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -120,11 +123,10 @@ ActiveRecord::Schema.define(version: 20160801215016) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "auctions", "products"
-  add_foreign_key "auto_bids", "auctions"
-  add_foreign_key "auto_bids", "users"
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
-  add_foreign_key "commandes", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "robots", "auctions"
   add_foreign_key "robots", "users"
+  add_foreign_key "submissions", "users"
 end

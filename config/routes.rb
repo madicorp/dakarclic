@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get 'talking'=> 'talking#index'
 
-  get 'submission' => 'submission#index'
 
   get 'how_it_works' => 'how_it_works#index'
 
@@ -19,6 +18,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :products do
+  end
+
+  resources :submissions do
   end
 
   resources :orders do
