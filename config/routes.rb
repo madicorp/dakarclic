@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   resources :auctions do
       resources :bids , only: [ :create] do
       end
+
+      resources :robots do
+      end
   end
 
   get '404' => 'errors#not_found'

@@ -9,7 +9,7 @@
         -if current_user
           =f.button "Poster", class: "btn btn-primary customenc"
         -else
-          %a.white{:href => "#login-modal", :title => "Poster" , "data-toggle" => "modal", class: "btn btn-primary" }
+          %a{:href => "#login-modal", :title => "Poster" , "data-toggle" => "modal", class: "btn btn-primary" }
             Poster
 -if current_user
   :javascript
