@@ -5,7 +5,7 @@
       =f.check_box :is_active,:id => "robot_#{current_user.id.to_s + @auction.id.to_s}", class: "activate-robots", "data-off-text" => "<i class='fa fa-power-off'></i>", "data-on-text" => "<i class='fa fa-android'></i>", "data-handle-width" => "100", "data-size" => "large", "data-on-color" => "success"
     .col-md-6
       .count-bought
-        .time-counter{:class => ("hide" unless @robot.is_active)}
+        .time-counter{:class => ("hide" unless @robot.is_active),:id => "conteur_#{current_user.id.to_s + @auction.id.to_s}"}
           %div{"data-countdown" => @robot.ends_at}
   .ratting-review.robot-config-area.hide
     .product-quantity.row

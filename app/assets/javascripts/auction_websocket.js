@@ -100,7 +100,7 @@ AuctionSocket.prototype.bid = function(data) {
 
     if(data.disable_robot_id !== "undefined" && data.disable_robot_id != null){
         $("#robot_"+data.disable_robot_id).bootstrapSwitch('state', false, false);
-
+        $("#conteur_"+data.disable_robot_id).addClass("hide")
     }
 
 };

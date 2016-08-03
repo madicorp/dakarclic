@@ -12,9 +12,13 @@ ChatSocket.prototype.initMessages = function() {
 
   this.form.submit(function(e) {
     e.preventDefault();
-    _this.sendMessage();
+      _this.sendMessage(_this.form);
       return false;
   });
+    $("#send-msg-btn").click(function (e) {
+        e.preventDefault();
+        _this.sendMessage(_this.form);
+    });
 
   this.socket.onmessage = function(e) {
       var data ="";
@@ -27,9 +31,9 @@ ChatSocket.prototype.initMessages = function() {
 
 
       switch(data.action) {
-      case 'chatnotifother':
-          _this.chatnotifother(data);
-      break;
+          case 'chatnotifother':
+              _this.chatnotifother(data);
+          break;
 
     }
     console.log(e);
@@ -38,7 +42,8 @@ ChatSocket.prototype.initMessages = function() {
     return false;
 };
 
-ChatSocket.prototype.sendMessage = function() {
+ChatSocket.prototype.sendMessage = function(form) {
+    $(form).ajaxSubmit({url: '/comments', type: 'post'})
     var template = {"action": 'chat', "user_id" : '{{user_id}}', "message" : '{{message}}'};
     this.socket.send(Mustache.render(JSON.stringify(template), {
         user_id: this.user_id,
@@ -46,25 +51,6 @@ ChatSocket.prototype.sendMessage = function() {
     }));
 };
 
-
-ChatSocket.prototype.chat = function(message) {
-   /* $.ajax({
-        type: "POST",
-        url: '/comments',
-        data: JSON.stringify({
-            "body" : message
-        }),
-        contentType: 'application/json',
-        dataType: 'json', // format of the response
-        success: function(msg) {
-
-        }
-      });*/
-
-}
-
-
-
 ChatSocket.prototype.chatnotifother = function (data) {
-        console.log(data);
+    $.get("/comments/refresh");
 }

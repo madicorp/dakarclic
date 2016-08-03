@@ -35,12 +35,23 @@ class AuctionSocket
             socket.send event.data
             begin
                 message = ActiveSupport::JSON.decode(event.data)
-                #tokens = event.data.split " "
                 case message["action"]
                     when "bid"
                         bid socket, message
                         @auction = Auction.find  message["auction_id"].to_i
                         @robots = @auction.active_robots
+                        if @robots.size >=1
+                            @robots.each do |robot|
+                                if robot.ends_at >= Time.now && robot.units > 1
+                                    message["robot_id"] = robot.id
+                                    active_robot socket, message
+                                end
+                            end
+
+                        end
+                    when "chat"
+                        chat socket, message
+=begin
                         r1 = @robots.first
                         r2 = @robots.last
 
@@ -50,6 +61,7 @@ class AuctionSocket
                         active_robot socket, message
                         message["robot_id"] = r2.id
                         active_robot socket, message
+=end
 
                     #tokens[2] = robot.id
                     #end
@@ -142,6 +154,22 @@ class AuctionSocket
 
     def same_auction? other_socket, socket
         other_socket.env["REQUEST_PATH"] == socket.env["REQUEST_PATH"]
+    end
+
+    def chat socket, message
+        notify_other socket, message
+        # end
+    end
+
+    def notify_other socket , message
+
+        @clients.reject { |client| client == socket  }.each do |client|
+            reponse = {
+                :action => 'chatnotifother',
+                :message => message
+            }.to_json
+            client.send reponse
+        end
     end
 
 end

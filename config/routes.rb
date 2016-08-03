@@ -13,25 +13,33 @@ Rails.application.routes.draw do
   get 'confirm' => 'confirm#index'
   get 'confirm/paydunya' => 'confirm#paydunya'
   get 'confirm/paypal' => 'confirm#paypal'
+  get 'comments/refresh' => 'comments#refresh'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  resources :products do
-  end
-
   resources :submissions do
   end
 
-  resources :orders do
-
-  end
   resources :comments do
   end
 
+  resources :users do
+    resources :orders  do
+    end
+    resources :robots  do
+    end
+  end
+
+  resources :products do
+  end
+  resources :orders do
+  end
   resources :auctions do
-      resources :bids , only: [ :create] do
-      end
+    resources :bids , only: [ :create] do
+    end
+    resources :robots  do
+    end
   end
 
   get '404' => 'errors#not_found'
