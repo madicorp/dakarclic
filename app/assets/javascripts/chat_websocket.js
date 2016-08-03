@@ -2,7 +2,7 @@ var ChatSocket = function(user_id, form) {
   this.user_id = user_id;
   this.form = $(form);
 
-  this.socket = new WebSocket(App.websocket_url + 'chat');
+  this.socket = new WebSocket(App.websocket_url + 'comments');
 
   this.initMessages();
 };
@@ -13,6 +13,7 @@ ChatSocket.prototype.initMessages = function() {
   this.form.submit(function(e) {
     e.preventDefault();
     _this.sendMessage();
+      return false;
   });
 
   this.socket.onmessage = function(e) {
@@ -26,11 +27,8 @@ ChatSocket.prototype.initMessages = function() {
 
 
       switch(data.action) {
-      case 'chat':
-        _this.chat( data.message);
-        break;
       case 'chatnotifother':
-          _this.chatnotifother();
+          _this.chatnotifother(data);
       break;
 
     }
@@ -50,7 +48,7 @@ ChatSocket.prototype.sendMessage = function() {
 
 
 ChatSocket.prototype.chat = function(message) {
-    $.ajax({
+   /* $.ajax({
         type: "POST",
         url: '/comments',
         data: JSON.stringify({
@@ -61,12 +59,12 @@ ChatSocket.prototype.chat = function(message) {
         success: function(msg) {
 
         }
-      });
+      });*/
 
 }
 
 
 
-ChatSocket.prototype.chatnotifother = function () {
-
+ChatSocket.prototype.chatnotifother = function (data) {
+        console.log(data);
 }
