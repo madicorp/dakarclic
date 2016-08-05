@@ -7,7 +7,7 @@
         .btn.seemore
           =link_to "Plus" , "#"
   .row.row-padd
-    - @auctionOnline.each do |auction|
+    - @auctions.each do |auction|
       .col-padd-custom
         .av_title= auction.product.name
         .av_image
@@ -37,4 +37,4 @@
 -#  %a.white{:href => "#login-modal", :title => "GO" , "data-toggle" => "modal", class: "btngo" }
   -#    GO
 #infinite-scroll
-  = will_paginate @auctionOnline
+  = will_paginate @auctions

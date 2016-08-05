@@ -25,20 +25,9 @@
                 =render "robot"
             .running-price.desblockprice
               %h1.desprice #{@auction.current_bid} FCFA
-              -if current_user
-                =render "bid"
-              -else
-                %p
-                  .cart-btn.nopad
-                    %a.white{:href => "#login-modal", :title => "Enchérir" , "data-toggle" => "modal" }
-                      Enchérir
+              =render "bid"
           .count-bought
             .time-counter
               %div{"data-countdown" => @auction.auction_close}
             .bought
               %span.nbench #{@auction.bids.size} Enchères
--if !current_user.nil?
-  :javascript
-    $(function() {
-            sessionStorage.setItem('ours', "#{current_user.id}");
-     })

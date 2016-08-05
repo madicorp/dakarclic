@@ -4,7 +4,7 @@
       .title
         %h1 Enchères terminées
   .row.row-padd
-    - @auctionClosed.each do |auction|
+    - @auctions.each do |auction|
       .col-padd-custom
         .single-product{:id => "auction#{auction.id}"}
           .av_title= auction.product.name

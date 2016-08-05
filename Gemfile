@@ -56,6 +56,8 @@ gem 'bootstrap-will_paginate'
 gem 'angularjs-rails'
 gem 'gravatar_image_tag'
 gem 'angular-ui-bootstrap-rails'
+gem 'vuejs-rails'
+
 #for bootstrap UI
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

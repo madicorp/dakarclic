@@ -1,4 +1,7 @@
 =render "slider"
+- @auctions = @auctions.where("auctions.auction_close > ? and auctions.status = ? ", Time.now,true).limit(10).order('created_at DESC')
 =render "auctions/online"
+- @auctions = @auctions.where("auctions.auction_close > ? and auctions.status = ? ", Time.now,false).limit(10).order('created_at DESC')
 =render "auctions/coming"
+- @auctions = @auctions.where("auctions.auction_close < ?", Time.now).limit(10).order('created_at DESC')
 =render "auctions/closed"

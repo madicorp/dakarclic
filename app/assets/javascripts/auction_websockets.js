@@ -13,7 +13,7 @@ AuctionSocket.prototype.initBinds = function() {
 
     this.form.submit(function(e) {
         e.preventDefault();
-        _this.sendBid();
+        _this.send_bid_btnsend_bid_btn
     });
 
     this.socket.onmessage = function(e) {
