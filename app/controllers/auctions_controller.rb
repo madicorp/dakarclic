@@ -29,9 +29,12 @@ class AuctionsController < ApplicationController
     end
 
     def online
-        @auctionOnline  = Auction.paginate(page: params[:page]).order('created_at DESC').where("auctions.auction_close > ?", Time.now)
+        @auctionOnline  = Auction.paginate(page: params[:page]).order('created_at DESC').where("auctions.auction_close > ? and auctions.status = ?", Time.now,true)
     end
 
+    def coming
+        @auctionComing  = Auction.paginate(page: params[:page]).order('created_at DESC').where("auctions.auction_close > ? and auctions.status = ?", Time.now,false)
+    end
     private
     def auction_params
         params.require(:auction).permit(:value , :auction_close)

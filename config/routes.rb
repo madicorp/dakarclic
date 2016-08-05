@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'comments/refresh' => 'comments#refresh'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users , :path_prefix => 'space'
 
   resources :submissions do
   end

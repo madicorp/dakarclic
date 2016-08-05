@@ -47,5 +47,5 @@ Rails.application.configure do
 
   config.consider_all_requests_local = false
 
-  Paperclip.options[:command_path] = "C:/Windows/system32/convert"
+  # Paperclip.options[:command_path] = "C:/Windows/system32/convert"
 end
