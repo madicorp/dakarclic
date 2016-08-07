@@ -19,6 +19,7 @@ class PlaceBid
             @value = auction.value
             @units = user.units
             @auction_close = auction.auction_close
+
             ActiveRecord::Base.transaction do
                 auction.save
                 user.save

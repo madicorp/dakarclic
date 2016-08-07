@@ -9,6 +9,6 @@
         %button#send_bid_btn.btn.btn-primary.customenc
           Enchérir
       -else
-        %a.white{:href => "#login-modal", :title => "Enchérir" , "data-toggle" => "modal" }
+        %a{:href => "#login-modal", :title => "Enchérir" , "data-toggle" => "modal" , class: "customenc"}
           Enchérir
 = javascript_include_tag "auction.bid"

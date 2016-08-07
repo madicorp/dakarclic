@@ -39,6 +39,11 @@
     bid: (data) ->
       $('.messunits').html(data.units+ 'Unités')
       $('.nbench').html(data.ench+ ' Enchères')
+      last_users = data.last_users
+      $('#auction'+data.auction_id).find('.av_winner').html('')
+      for user in data.last_users
+        $('#auction'+data.auction_id).find('.av_winner').append("<div class='winner'>"+user+"</div>")
+      $('#auction'+data.auction_id).find('.price').html(data.value + ' FCFA')
       user_id =  parseInt(sessionStorage.getItem('ours'))
       if(data.user_id == user_id)
         $('#infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
@@ -61,6 +66,8 @@
 # Auction outbid function update informations
     outbid: (data) ->
       $('.nbench').html(data.ench+ ' Enchères')
+      $('#auction'+data.auction_id).find('.price').html(data.value + ' FCFA')
+
       user_id =   parseInt(sessionStorage.getItem('ours'))
       if(data.user_id == user_id)
         $('#infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
@@ -104,5 +111,5 @@
         $(this).removeClass('animated ' + animationName)
         $(this).addClass('desprice').removeClass('desprice_inverse')
   }
-    
+
 ) jQuery

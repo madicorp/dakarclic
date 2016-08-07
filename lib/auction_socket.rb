@@ -70,7 +70,7 @@ class AuctionSocket
                 if message["message"] == "createrobotok"
                     message["message"] = "bidok"
                     socket.send message
-                    notify_outbids socket,  message["value"] ,   message["ench"],   message["user_id"] , message["units_robot"] ,message["disable_robot_id"]
+                    notify_outbids socket,  message["value"] ,   message["ench"],   message["user_id"] , message["units_robot"] ,message["disable_robot_id"],nil,nil
                 end
 
             rescue Exception => e
@@ -91,10 +91,12 @@ class AuctionSocket
                 :units => service.units,
                 :ench => service.nb_ench,
                 :user_id => service.user.id,
-                :units_robot => service.units_robot
+                :units_robot => service.units_robot,
+                :auction_id => service.auction.id,
+                :last_users => service.auction.last_users
             }.to_json
             socket.send reponse
-            notify_outbids socket, service.value , service.nb_ench, service.user.id , -1,nil
+            notify_outbids socket, service.value , service.nb_ench, service.user.id , -1,nil,service.auction.id ,service.auction.last_users
         else
             if service.status == :won
                 notify_auction_ended socket
@@ -113,10 +115,12 @@ class AuctionSocket
                 :ench => service.nb_ench,
                 :user_id => service.user.id,
                 :units_robot => service.units_robot,
-                :disable_robot_id => service.disable_robot_id
+                :disable_robot_id => service.disable_robot_id,
+                :last_users => service.auction.last_users
+
             }.to_json
             socket.send reponse
-            notify_outbids socket, service.value , service.nb_ench, service.user.id , service.units_robot, service.disable_robot_id
+            notify_outbids socket, service.value , service.nb_ench, service.user.id , service.units_robot, service.disable_robot_id,service.auction.id , service.auction.last_users
         else
             if service.status == :won
                 notify_auction_ended socket
@@ -130,14 +134,16 @@ class AuctionSocket
         socket.send message
     end
 
-    def notify_outbids socket, value , nb_ench, user_id ,units_robot, disable_robot_id
+    def notify_outbids socket, value , nb_ench, user_id ,units_robot, disable_robot_id ,auction_id , last_users
         reponse = {
             :message => 'outbid',
             :value  => value,
             :ench => nb_ench,
             :user_id => user_id,
+            :auction_id => auction_id,
             :units_robot => units_robot,
-            :disable_robot_id => disable_robot_id
+            :disable_robot_id => disable_robot_id,
+            :last_users => last_users
         }.to_json
         @clients.reject { |client| client == socket || !same_auction?(client,socket) }.each do |client|
             client.send reponse
