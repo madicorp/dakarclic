@@ -260,6 +260,18 @@ div.ah_details div.price, td.al_price div.price, div.av_price div.price, span.sp
   text-align: center;
   white-space: nowrap;
 }
+
+div.av_price .price_inverse{
+  margin: 0px auto;
+  width: 130px;
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
 div.av_winner {
   margin-top: 1px;
   margin-bottom: 8px;

@@ -28,6 +28,6 @@
               =render "bid"
           .count-bought
             .time-counter
-              %div{"data-countdown" => @auction.auction_close}
-            .bought
-              %span.nbench #{@auction.bids.size} Enchères
+              %div#countdownauction{"data-countdown" => @auction.auction_close}
+            -#.bought
+            -#  %span.nbench #{@auction.bids.size} Enchères

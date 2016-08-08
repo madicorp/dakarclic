@@ -43,7 +43,18 @@
       $('#auction'+data.auction_id).find('.av_winner').html('')
       for user in data.last_users
         $('#auction'+data.auction_id).find('.av_winner').append("<div class='winner'>"+user+"</div>")
+
+
       $('#auction'+data.auction_id).find('.price').html(data.value + ' FCFA')
+      $('#auction'+data.auction_id).find('.timer_alert').attr("data-countdown", data.auction_close)
+      $('#auction'+data.auction_id).find('.timer_alert').attr 'data-countdown', ->
+        $this = $(this)
+        finalDate = data.auction_close
+        $this.countdown finalDate, (event) ->
+          $this.html event.strftime('<span><span>%-D<span>J</span></span></span><span><span >%-H<span>H</span></span></span><span><span>%M<span>M</span></span></span> <span><span>%S<span>S</span></span></span>')
+          return
+        return
+
       user_id =  parseInt(sessionStorage.getItem('ours'))
       if(data.user_id == user_id)
         $('#infogagn').html('Félicitations ,vous êtes temporairement le gagnant.')
@@ -51,13 +62,13 @@
         $('#infogagn').html('Ooopss. Vous êtes hors enchère en ce moment.')
 
       $('.desprice').html(data.value + 'FCFA')
-      $('#infogagn').addClass('infogagn_inverse').removeClass('infogagn')
 
-      $('.infogagn_inverse').animateinfogagn('wobble')
+      $('#infogagn').addClass('infogagn_inverse').removeClass('infogagn')
+      $('.infogagn_inverse').animateCss('wobble','infogagn','infogagn_inverse')
 
       $('.desprice').addClass('desprice_inverse').removeClass('desprice')
+      $('.desprice_inverse').animateCss('pulse', 'desprice_inverse','desprice')
 
-      $('.desprice_inverse').animateCss('pulse')
       if(data.disable_robot_id != undefined && data.disable_robot_id != null)
         $("#robot_" + data.disable_robot_id).bootstrapSwitch('state', false, false)
         $("#conteur_" + data.disable_robot_id).addClass("hide")
@@ -66,7 +77,20 @@
 # Auction outbid function update informations
     outbid: (data) ->
       $('.nbench').html(data.ench+ ' Enchères')
+      last_users = data.last_users
+      $('#auction'+data.auction_id).find('.av_winner').html('')
+      for user in data.last_users
+        $('#auction'+data.auction_id).find('.av_winner').append("<div class='winner'>"+user+"</div>")
       $('#auction'+data.auction_id).find('.price').html(data.value + ' FCFA')
+      $('#auction'+data.auction_id).find('.price').html(data.value + ' FCFA')
+      $('#auction'+data.auction_id).find('.timer_alert').attr("data-countdown", data.auction_close)
+      $('#auction'+data.auction_id).find('.timer_alert').attr 'data-countdown', ->
+        $this = $(this)
+        finalDate = data.auction_close
+        $this.countdown finalDate, (event) ->
+          $this.html event.strftime('<span><span>%-D<span>J</span></span></span><span><span >%-H<span>H</span></span></span><span><span>%M<span>M</span></span></span> <span><span>%S<span>S</span></span></span>')
+          return
+        return
 
       user_id =   parseInt(sessionStorage.getItem('ours'))
       if(data.user_id == user_id)
@@ -76,9 +100,19 @@
 
       $('.desprice').html(data.value + 'FCFA')
       $('#infogagn').addClass('infogagn_inverse').removeClass('infogagn')
-      $('.infogagn_inverse').animateinfogagn('wobble')
+      $('.infogagn_inverse').animateCss('wobble','infogagn','infogagn_inverse')
+
       $('.desprice').addClass('desprice_inverse').removeClass('desprice')
-      $('.desprice_inverse').animateCss('pulse')
+      $('.desprice_inverse').animateCss('pulse', 'desprice_inverse','desprice')
+
+      $('#countdownauction').attr("data-countdown", data.auction_close)
+      $('#countdownauction').attr 'data-countdown', ->
+        $this = $(this)
+        finalDate = data.auction_close
+        $this.countdown finalDate, (event) ->
+          $this.html event.strftime('<span><span>%-D<span>J</span></span></span><span><span >%-H<span>H</span></span></span><span><span>%M<span>M</span></span></span> <span><span>%S<span>S</span></span></span>')
+          return
+        return
 
       if(data.disable_robot_id != "undefined" && data.disable_robot_id != null)
         $("#robot_"+data.disable_robot_id).bootstrapSwitch('state', false, false)
@@ -99,17 +133,11 @@
 
   # JQUERY EXTEND ANIMATION FUNCTION
   $.fn.extend {
-    animateinfogagn:  (animationName) ->
+    animateCss: (animationName , oldClass, newClass) ->
       animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
       $(this).addClass('animated ' + animationName).one animationEnd, ->
         $(this).removeClass('animated ' + animationName)
-        $(this).addClass('infogagn').removeClass('infogagn_inverse')
-
-    animateCss: (animationName) ->
-      animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
-      $(this).addClass('animated ' + animationName).one animationEnd, ->
-        $(this).removeClass('animated ' + animationName)
-        $(this).addClass('desprice').removeClass('desprice_inverse')
+        $(this).addClass(oldClass).removeClass(newClass)
   }
 
 ) jQuery
