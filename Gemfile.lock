@@ -322,6 +322,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  json
   modernizr-rails
   monetize (~> 1.4)
   owlcarousel-rails
@@ -332,6 +333,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.6)
   rails_admin
+  rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   turbolinks

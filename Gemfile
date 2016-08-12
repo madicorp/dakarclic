@@ -57,6 +57,8 @@ gem 'angularjs-rails'
 gem 'gravatar_image_tag'
 gem 'angular-ui-bootstrap-rails'
 gem 'vuejs-rails'
+gem 'rest-client'
+gem 'json'
 
 #for bootstrap UI
 # Use ActiveModel has_secure_password

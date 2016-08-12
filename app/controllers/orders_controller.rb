@@ -62,54 +62,49 @@ class OrdersController < ApplicationController
           # A Payment Resource; create one using
           # the above types and intent as `sale or `authorize`
           @payment = PayPal::SDK::REST::Payment.new({
-                                     :intent => "sale",
-
-                                     # ###Payer
-                                     # A resource representing a Payer that funds a payment
-                                     # Use the List of `FundingInstrument` and the Payment Method
-                                     # as 'credit_card'
-                                     :payer => {
-                                         :payment_method => "credit_card",
-                                         :funding_instruments => [{
-                                                                      :credit_card => {
-                                                                          :type => card[:type],
-                                                                          :number => card[:number].tr(" ", ""),
-                                                                          :expire_month => card[:month],
-                                                                          :expire_year => card[:year],
-                                                                          :cvv2 => card[:cvc],
-                                                                          :first_name => card[:firstname],
-                                                                          :last_name => card[:lastname],
-                                                                      }
-                                                                  }]
-                                     },
-                                     :transactions =>  [{
-                                                            # Item List
-                                                            :item_list => {
-                                                                :items => [{
-                                                                               :name => "Unités DakarClick",
-                                                                               :currency => "EUR",
-                                                                               :price => '%.2f' % 118.to_money(:XOF).exchange_to(:EUR),
-                                                                               :quantity => @order.quantity}]},
-                                                            :amount =>  {
-                                                                :total =>  '%.2f' % (118.to_money(:XOF).exchange_to(:EUR)* @order.quantity),
-                                                                :currency =>  "EUR"
-                                                            },
-                                                            :description =>  "This is the payment transaction description."
-                                                        }]
-                                 })
+                                                        :intent => "sale",
+                                                        :payer => {
+                                                            :payment_method => "credit_card",
+                                                            :funding_instruments => [{
+                                                                                         :credit_card => {
+                                                                                             :type => card[:type],
+                                                                                             :number => card[:number].tr(" ", ""),
+                                                                                             :expire_month => card[:month],
+                                                                                             :expire_year => card[:year],
+                                                                                             :cvv2 => card[:cvc],
+                                                                                             :first_name => card[:firstname],
+                                                                                             :last_name => card[:lastname],
+                                                                                         }
+                                                                                     }]
+                                                        },
+                                                        :transactions =>  [{
+                                                                               # Item List
+                                                                               :item_list => {
+                                                                                   :items => [{
+                                                                                                  :name => "Unités DakarClick",
+                                                                                                  :currency => "EUR",
+                                                                                                  :price => '%.2f' % 118.to_money(:XOF).exchange_to(:EUR),
+                                                                                                  :quantity => @order.quantity}]},
+                                                                               :amount =>  {
+                                                                                   :total =>  '%.2f' % (118.to_money(:XOF).exchange_to(:EUR)* @order.quantity),
+                                                                                   :currency =>  "EUR"
+                                                                               },
+                                                                               :description =>  "This is the payment transaction description."
+                                                                           }]
+                                                    })
           # Create Payment and return status( true or false )
           if @payment.create
             p "Payment[#{@payment.id}] created successfully"
-              unit = @payment.transactions[0].item_list.items[0].quantity
+            unit = @payment.transactions[0].item_list.items[0].quantity
             user = current_user
             if user.units.nil?
-                user.units =0
+              user.units =0
             end
 
             user.units  += unit.to_i
-           if user.save
-               redirect_to confirm_path
-           end
+            if user.save
+              redirect_to confirm_path
+            end
 
           else
             # Display Error message
@@ -120,28 +115,28 @@ class OrdersController < ApplicationController
         when "paypal"
           Money.default_bank = Money::Bank::GoogleCurrency.new
           @payment = PayPal::SDK::REST::Payment.new({
-                                     :intent =>  "sale",
-                                     :payer =>  {
-                                         :payment_method =>  "paypal"
-                                     },
-                                     :redirect_urls => {
-                                         :return_url => "http://localhost:3000/confirm/paypal",
-                                         :cancel_url => "http://localhost:3000/confirm/paypal"
-                                     },
-                                     :transactions =>  [{ # Item List
-                                                          :item_list => {
-                                                              :items => [{
-                                                                             :name => "Unités DakarClick",
-                                                                             :currency => "EUR",
-                                                                             :price => '%.2f' % 118.to_money(:XOF).exchange_to(:EUR),
-                                                                             :quantity => @order.quantity}]},
-                                                           :amount =>  {
-                                                                :total =>  '%.2f' % (118.to_money(:XOF).exchange_to(:EUR)* @order.quantity),
-                                                                :currency =>  "EUR"
-                                                            },
-                                                            :description =>  "This is the payment transaction description."
-                                      }]
-                                 })
+                                                        :intent =>  "sale",
+                                                        :payer =>  {
+                                                            :payment_method =>  "paypal"
+                                                        },
+                                                        :redirect_urls => {
+                                                            :return_url => "http://localhost:3000/confirm/paypal",
+                                                            :cancel_url => "http://localhost:3000/confirm/paypal"
+                                                        },
+                                                        :transactions =>  [{ # Item List
+                                                                             :item_list => {
+                                                                                 :items => [{
+                                                                                                :name => "Unités DakarClick",
+                                                                                                :currency => "EUR",
+                                                                                                :price => '%.2f' % 118.to_money(:XOF).exchange_to(:EUR),
+                                                                                                :quantity => @order.quantity}]},
+                                                                             :amount =>  {
+                                                                                 :total =>  '%.2f' % (118.to_money(:XOF).exchange_to(:EUR)* @order.quantity),
+                                                                                 :currency =>  "EUR"
+                                                                             },
+                                                                             :description =>  "This is the payment transaction description."
+                                                                           }]
+                                                    })
 
           # Create Payment and return status
           if @payment.create

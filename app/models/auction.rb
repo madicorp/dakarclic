@@ -28,7 +28,7 @@ class Auction < ActiveRecord::Base
   def last_users
       names = Array.new(3)
       bids.order(value: :desc).first(3).each_with_index { |bid , index|
-             names[index] = bid.user.name
+             names[index] = bid.user.username
       }
 
     return names
