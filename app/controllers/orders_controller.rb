@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
             puts invoice.response_text
             # Vous pouvez par exemple faire un "redirect_to invoice.invoice_url"
             redirect_to  invoice.invoice_url
-            puts invoice.invoice_url
+            puts invoice.
           else
             puts invoice.status
             puts invoice.response_text
