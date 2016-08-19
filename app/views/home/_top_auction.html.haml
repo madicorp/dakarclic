@@ -1,7 +1,7 @@
 .title.t-bdr.pb30
   %h1 ENCHERE STAR
 .single-product
-  -unless Auction.active.size < 0
+  -unless Auction.active.size == 0
     -@auction = Auction.active.select("count(bids.id) as nbr_bid, auctions.*").from("bids, auctions").where("bids.auction_id = auctions.id").order("nbr_bid DESC").group("auctions.id, bids.id").first
     .col-padd-custom{:class => "auction"+@auction.id.to_s}
       %input{:type => "hidden" , :value => @auction.id}
