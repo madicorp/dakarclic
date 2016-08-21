@@ -59,6 +59,7 @@ gem 'momentjs-rails'
 gem 'rest-client'
 gem 'json'
 
+
 #for bootstrap UI
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
