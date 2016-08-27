@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
     request.referrer || root_path
   end
 
+  def after_sign_up_path_for(resource)
+    flash[:success] = "Signup passed successful"
+  end
 
   def set_locale
       I18n.locale = params[:locale] || I18n.default_locale

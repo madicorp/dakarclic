@@ -58,6 +58,7 @@ gem 'angular-ui-bootstrap-rails'
 gem 'momentjs-rails'
 gem 'rest-client'
 gem 'json'
+gem 'toastr-rails'
 
 
 #for bootstrap UI

@@ -4,7 +4,7 @@
 $(document).on('ready page:load', function(event) {
 
 
-    $('#ensign-nivoslider-3').nivoSlider({
+    $('#home-slider').nivoSlider({
         effect: 'random',
         slices: 15,
         boxCols: 8,
@@ -18,6 +18,21 @@ $(document).on('ready page:load', function(event) {
         manualAdvance: false
     });
 
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "positionClass": "toast-bottom-right",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
     //scroll to animation
     $("a[href^='#'][data-toggle!='modal'][data-toggle!='collapse']").click(function (e) {
         e.preventDefault();
@@ -27,7 +42,9 @@ $(document).on('ready page:load', function(event) {
             margin += 50;
         }
         var element = $(this).attr("href");
-        $("html, body").animate({scrollTop: $(element).offset().top - margin }, 2000);
+        if (element.length) {
+            $("html, body").animate({scrollTop: $(element).offset().top - margin}, 2000);
+        }
         return false;
     });
 

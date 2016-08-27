@@ -1,4 +1,5 @@
 (($) ->
+  #get userid
   user_id = $("#user_id").val()
   sessionStorage.setItem('ours', user_id);
   # init Auction Socket
