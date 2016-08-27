@@ -25,7 +25,7 @@ $(document).on('ready page:load', function(event) {
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "5000",
+        "timeOut": "10000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
@@ -111,7 +111,7 @@ $(document).on('ready page:load', function(event) {
             $(this).val(newVal);
         }
         var s_total = newVal * 100;
-        $(".cart-total").find(".total").html(s_total);
+        $(".cart-total").find(".total").html(s_total + "FCFA");
         $("#order_total_ttc").val(s_total);
     });
     $(".cart-plus-minus")
@@ -130,7 +130,7 @@ $(document).on('ready page:load', function(event) {
         }
         $button.parent().find("input").val(newVal);
         var s_total = newVal * 100;
-        $(".cart-total").find(".total").html(s_total);
+        $(".cart-total").find(".total").html(s_total + "FCFA");
         $("#order_total_ttc").val(s_total);
         $(".cart-plus-minus-box").trigger('input');
     });
