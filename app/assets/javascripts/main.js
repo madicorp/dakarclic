@@ -48,7 +48,7 @@ $(document).on('ready page:load', function(event) {
         return false;
     });
 
-    $(document).scroll(function(e){
+    /*$(document).scroll(function(e){
         var scrollTop = $(document).scrollTop();
         if(scrollTop > 200){
             $("#scrollUp").css("display","block");
@@ -60,7 +60,7 @@ $(document).on('ready page:load', function(event) {
         } else {
             $('.menu-area').removeClass('navbar-fixed-top').addClass('navbar-static-top');
         }
-    });
+    });*/
 
     /*----------------------------
      jQuery MeanMenu

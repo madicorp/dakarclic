@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
     @invoice = invoice
     mail(subject: "New Payment Dakarclic: #{@user.email}")
   end
-  def payment_faild user ,invoice
+  def payment_failed user ,invoice
     @user = user
     @invoice = invoice
     mail(subject: "New Payment Dakarclic: #{@user.email}")
