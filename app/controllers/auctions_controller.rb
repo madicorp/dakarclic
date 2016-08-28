@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token, :only => [:ended]
   def index
     params[:filter].present? ? filter = params[:filter] : filter = ""
     case filter
@@ -39,6 +39,12 @@ class AuctionsController < ApplicationController
     if @robot.nil?
       @robot = Robot.new
     end
+  end
+
+  def ended
+    auction_id = params[:auction_id]
+    auction = Auction.find auction_id
+    @winner = Struct.new(:auction, :winner).new(auction.name,auction.top_bid.user.username)
   end
 
   private
