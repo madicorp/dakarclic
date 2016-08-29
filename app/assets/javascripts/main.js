@@ -22,16 +22,17 @@ $(document).on('ready page:load', function(event) {
         "closeButton": false,
         "debug": false,
         "positionClass": "toast-bottom-right",
+        "progressBar": true,
         "onclick": null,
         "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "10000",
+        "hideDuration": "5000",
+        "timeOut": "20000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
+    };
 
     //scroll to animation
     $("a[href^='#'][data-toggle!='modal'][data-toggle!='collapse']").click(function (e) {
@@ -84,7 +85,16 @@ $(document).on('ready page:load', function(event) {
             timeTo: new Date(moment(finalDate)),
             displayDays: 2,
             fontSize: 20,
-            countdownAlertLimit: 30
+            countdownAlertLimit: 30,
+            callback: function () {
+                var auction_id = this.auctionid;
+                var auction_type = this.auctiontype;
+                if (auction_type == "active"){
+                    $.post("/auctions/ended", {"auction_id" : auction_id, "auction_type": auction_type}).done(function (data) {
+                        toastr.info('The Auction '+data.auction+' is ended , '+data.winner+' Wins !');
+                    });
+                }
+            }
         });
 
     });
