@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 
-.idea
+.idea/*
 config/database.yml
-lib/vdp/
+public/system
+public/assets

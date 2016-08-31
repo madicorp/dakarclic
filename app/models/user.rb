@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
 
   after_create :send_admin_mail
   def send_admin_mail
-    AdminMailer.registration(self).deliver
+    AdminMailer.registration(self).deliver_now
   end
 end

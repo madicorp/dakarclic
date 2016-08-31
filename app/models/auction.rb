@@ -55,7 +55,9 @@ class Auction < ActiveRecord::Base
 
     return names
   end
-
+  def self.total_value_online
+    Auction.active.sum(:value)
+  end
   def active_robots
     Robot.joins(:auction).where(:is_active => true, :auction_id => self.id)
   end
