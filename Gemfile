@@ -29,6 +29,7 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-switch-rails'
 gem 'rails_admin'
+gem 'rails_admin_rollincode', '~> 1.0'
 gem 'cancancan'
 gem 'puma'
 gem 'faye-websocket'
@@ -59,7 +60,8 @@ gem 'momentjs-rails'
 gem 'rest-client'
 gem 'json'
 gem 'toastr-rails'
-
+gem 'groupdate'
+gem 'lodash-rails'
 
 #for bootstrap UI
 # Use ActiveModel has_secure_password
