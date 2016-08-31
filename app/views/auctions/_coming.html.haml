@@ -11,7 +11,7 @@
           .av_title= auction.product.name
           .av_image
             .center
-              %a.image{:href => "#"}
+              %a.image{:href => auction_path(@auction.id)}
                 =image_tag auction.product.image ,class: "style_image_auction"
           .av_timer
             .timer_alert{"data-countdown" => auction.auction_close, "data-auctionid" => @auction.id.to_s, "data-auctiontype" => "coming"}
