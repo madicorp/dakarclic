@@ -29,7 +29,7 @@ class Auction < ActiveRecord::Base
   end
 
   def isComing
-      self.auction_close > Time.now && self.status == true
+      self.auction_close > Time.now && self.status == false
   end
 
   def topbid_user
