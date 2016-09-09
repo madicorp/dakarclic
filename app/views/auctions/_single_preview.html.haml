@@ -16,9 +16,9 @@
       .winner{:class => ("first" if index == 0)}
         ="#{index+1}- #{name}" unless name.nil?
   .center
-    -if !current_user
-      %a.white{:href => "#login-modal", :title => "GO" , "data-toggle" => "modal", class: "btngo" }
+    -if current_user.nil?
+      %button.white{"data-target" => "#login-modal", :title => "GO" , "data-toggle" => "modal", class: "btngo" }
         GO
     -else
-      %button.send_home_btn.btn.btngo
+      %button.send_home_btn.btn.btngo{"data-auction" =>"#{@auction.id}"}
         GO
